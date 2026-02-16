@@ -1,3 +1,9 @@
+export type PodiumEntry = {
+  position: number;
+  driver: string;
+  team: string
+}
+
 export type PastRace = {
   id: string
   name: string
@@ -5,5 +11,6 @@ export type PastRace = {
   city: string
   country: string
   date: string | null
-  result: string
+  podium: PodiumEntry[]
 }
+

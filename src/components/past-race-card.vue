@@ -19,6 +19,12 @@ defineProps<{
         <li>Circuito: {{ pastRace.venue }}</li>
         <li>Ubicación: {{ pastRace.city }} ({{ pastRace.country }})</li>
       </ul>
+      <p><strong>Pódium:</strong></p>
+      <ul>
+        <li v-for="(participant, index) in pastRace.podium" :key="index">
+          {{ participant.position }}. {{ participant.driver }} ({{ participant.team }})
+        </li>
+      </ul>
     </template>
     <template v-else-if="pastRaceError">
       <p>No se pudo cargar la última carrera.</p>
