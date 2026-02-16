@@ -3,19 +3,28 @@ import type { PastRace } from '@/types/past-race.type'
 
 defineProps<{
   pastRace: PastRace | null
+  pastRaceError: string | null
 }>()
 </script>
 
 <template>
-  <article v-if="pastRace">
+  <article>
     <header><strong>Última carrera</strong></header>
-    <p>
-      <strong>{{ pastRace.name }}</strong>
-    </p>
-    <ul>
-      <li>Fecha: {{ pastRace.date }}</li>
-      <li>Circuito: {{ pastRace.venue }}</li>
-      <li>Ubicación: {{ pastRace.city }} ({{ pastRace.country }})</li>
-    </ul>
+    <template v-if="pastRace">
+      <p>
+        <strong>{{ pastRace.name }}</strong>
+      </p>
+      <ul>
+        <li>Fecha: {{ pastRace.date }}</li>
+        <li>Circuito: {{ pastRace.venue }}</li>
+        <li>Ubicación: {{ pastRace.city }} ({{ pastRace.country }})</li>
+      </ul>
+    </template>
+    <template v-else-if="pastRaceError">
+      <p>No se pudo cargar la última carrera.</p>
+    </template>
+    <template v-else>
+      <p>Cargando...</p>
+    </template>
   </article>
 </template>
