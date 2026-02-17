@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <article>
-    <header><strong>Última carrera</strong></header>
+    <header>Última carrera</header>
     <template v-if="pastRace">
       <p>
         <strong>{{ pastRace.name }}</strong>
