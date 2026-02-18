@@ -1,5 +1,5 @@
 import type { PastRace, PodiumEntry } from '@/types/past-race.type'
-import type { NextRace } from '../types/next-race.type'
+import type { NextRace } from '@/types/next-race.type'
 
 const BASE_URL = 'https://www.thesportsdb.com/api/v1/json/'
 const API_KEY = '123'
