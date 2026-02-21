@@ -1,27 +1,12 @@
 <script setup lang="ts">
-import { SeasonService } from '@/services/season.service'
-import type { SeasonEvent } from '@/types/season-event.type'
-import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useSeasonData } from '@/composables/useSeasonData'
+import { computed } from 'vue'
 
-const seasonEvents = ref<SeasonEvent[]>([])
-const seasonEventsError = ref<string>('')
-const seasonService = new SeasonService()
 const route = useRoute()
-
-const loadSeasonEventsData = async () => {
-  seasonEventsError.value = ''
-  const season = String(route.params.season ?? '')
-
-  try {
-    seasonEvents.value = await seasonService.getSeasonEvents(season)
-  } catch (error) {
-    console.error('Error al obtener los eventos de la temporada:', error)
-    seasonEventsError.value = 'No se pudieron cargar los eventos de la temporada.'
-  }
-}
-
-onMounted(loadSeasonEventsData)
+// Usamos computed para que este valor se actualice automáticamente al cambiar la ruta.
+const seasonYear = computed(() => String(route.params.season ?? ''))
+const { seasonEvents, seasonEventsError } = useSeasonData(seasonYear)
 </script>
 
 <template>
