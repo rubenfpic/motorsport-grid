@@ -30,7 +30,7 @@ defineProps<{
       <p>No se pudo cargar la última carrera.</p>
     </template>
     <template v-else>
-      <p>Cargando...</p>
+      <p aria-busy="true">Cargando...</p>
     </template>
   </article>
 </template>
