@@ -3,7 +3,6 @@ import type { SeasonEvent } from '@/types/season-event.type'
 const BASE_URL = 'https://www.thesportsdb.com/api/v1/json/'
 const API_KEY = '123'
 const LEAGUE_ID = '4438'
-const SEASON_YEAR = '2026'
 const SEASON_ENDPOINT = 'eventsseason.php'
 
 // Forma "cruda" de cada evento tal como llega desde la API.
@@ -24,8 +23,8 @@ type SeasonEventsResponse = {
 }
 
 export class SeasonService {
-  async getSeasonEvents(): Promise<SeasonEvent[]> {
-    const url = `${BASE_URL}${API_KEY}/${SEASON_ENDPOINT}?id=${LEAGUE_ID}&s=${SEASON_YEAR}`
+  async getSeasonEvents(season: string): Promise<SeasonEvent[]> {
+    const url = `${BASE_URL}${API_KEY}/${SEASON_ENDPOINT}?id=${LEAGUE_ID}&s=${season}`
     const response = await fetch(url)
 
     if (!response.ok) {
