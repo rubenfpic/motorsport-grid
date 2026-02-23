@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
+import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import { useSeasonData } from '@/composables/useSeasonData'
-import { computed } from 'vue'
 import { AVAILABLE_SEASONS } from '@/constants/api'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 // Usamos computed para que este valor se actualice automáticamente al cambiar la ruta.
@@ -25,7 +26,7 @@ const nextSeason = computed<number | null>(() => {
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'Dashboard' }">← Volver al Dashboard</RouterLink>
+  <BreadcrumbsNav />
   <hr />
   <span v-if="previousSeason !== null">
     <RouterLink :to="{ name: 'Season', params: { season: String(previousSeason) } }"
