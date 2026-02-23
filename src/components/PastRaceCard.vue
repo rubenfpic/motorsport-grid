@@ -11,20 +11,26 @@ defineProps<{
   <article>
     <header>Última carrera</header>
     <template v-if="pastRace">
-      <p>
-        <strong>{{ pastRace.name }}</strong>
-      </p>
-      <ul>
-        <li>Fecha: {{ pastRace.date }}</li>
-        <li>Circuito: {{ pastRace.venue }}</li>
-        <li>Ubicación: {{ pastRace.city }} ({{ pastRace.country }})</li>
-      </ul>
-      <p><strong>Pódium:</strong></p>
-      <ul>
-        <li v-for="(participant, index) in pastRace.podium" :key="index">
-          {{ participant.position }}. {{ participant.driver }} ({{ participant.team }})
-        </li>
-      </ul>
+      <div class="grid">
+        <div>
+          <p>
+            <strong>{{ pastRace.name }}</strong>
+          </p>
+          <ul>
+            <li>Fecha: {{ pastRace.date }}</li>
+            <li>Circuito: {{ pastRace.venue }}</li>
+            <li>Ubicación: {{ pastRace.city }} ({{ pastRace.country }})</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Pódium:</strong></p>
+          <ul>
+            <li v-for="(participant, index) in pastRace.podium" :key="index">
+              {{ participant.position }}. {{ participant.driver }} ({{ participant.team }})
+            </li>
+          </ul>
+        </div>
+      </div>
     </template>
     <template v-else-if="pastRaceError">
       <p>No se pudo cargar la última carrera.</p>

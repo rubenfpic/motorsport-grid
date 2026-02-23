@@ -1,9 +1,5 @@
 import type { SeasonEvent } from '@/types/season-event.type'
-
-const BASE_URL = 'https://www.thesportsdb.com/api/v1/json/'
-const API_KEY = '123'
-const LEAGUE_ID = '4438'
-const SEASON_ENDPOINT = 'eventsseason.php'
+import { API_KEY, BASE_URL, LEAGUE_ID, SEASON_ENDPOINT } from '@/constants/api'
 
 // Forma "cruda" de cada evento tal como llega desde la API.
 type SeasonEventApi = {

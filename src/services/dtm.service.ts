@@ -1,11 +1,12 @@
 import type { PastRace, PodiumEntry } from '@/types/past-race.type'
 import type { NextRace } from '@/types/next-race.type'
-
-const BASE_URL = 'https://www.thesportsdb.com/api/v1/json/'
-const API_KEY = '123'
-const LEAGUE_ID = '4438'
-const NEXT_RACE_ENDPOINT = 'eventsnextleague.php'
-const PAST_RACE_ENDPOINT = 'eventspastleague.php'
+import {
+  API_KEY,
+  BASE_URL,
+  LEAGUE_ID,
+  NEXT_RACE_ENDPOINT,
+  PAST_RACE_ENDPOINT,
+} from '@/constants/api'
 
 export class DtmService {
   async getNextRace(): Promise<NextRace | null> {
