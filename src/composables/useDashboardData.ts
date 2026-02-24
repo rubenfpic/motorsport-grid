@@ -8,17 +8,23 @@ export function useDashboardData() {
   const pastRace = ref<PastRace | null>(null)
   const nextRaceError = ref<string | null>(null)
   const pastRaceError = ref<string | null>(null)
+  const isNextRaceLoading = ref(true)
+  const isPastRaceLoading = ref(true)
   const dtmService = new DtmService()
 
   const loadDashboardData = async () => {
     nextRaceError.value = null
     pastRaceError.value = null
+    isNextRaceLoading.value = true
+    isPastRaceLoading.value = true
 
     try {
       nextRace.value = await dtmService.getNextRace()
     } catch (error) {
       console.error('Error al obtener la próxima carrera:', error)
       nextRaceError.value = 'No se pudo cargar la próxima carrera.'
+    } finally {
+      isNextRaceLoading.value = false
     }
 
     try {
@@ -26,6 +32,8 @@ export function useDashboardData() {
     } catch (error) {
       console.error('Error al obtener la última carrera:', error)
       pastRaceError.value = 'No se pudo cargar la última carrera.'
+    } finally {
+      isPastRaceLoading.value = false
     }
   }
 
@@ -36,6 +44,8 @@ export function useDashboardData() {
     pastRace,
     nextRaceError,
     pastRaceError,
+    isNextRaceLoading,
+    isPastRaceLoading,
     loadDashboardData,
   }
 }

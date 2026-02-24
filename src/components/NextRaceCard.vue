@@ -4,13 +4,16 @@ import type { NextRace } from '@/types/next-race.type'
 defineProps<{
   nextRace: NextRace | null
   nextRaceError: string | null
+  isNextRaceLoading: boolean
 }>()
 </script>
 
 <template>
   <article>
     <header>Próxima carrera</header>
-    <template v-if="nextRace">
+    <p v-if="isNextRaceLoading" aria-busy="true">Cargando...</p>
+    <p v-else-if="nextRaceError">No se pudo cargar la próxima carrera.</p>
+    <template v-else-if="nextRace">
       <p>
         <strong>{{ nextRace.name }}</strong>
       </p>
@@ -20,11 +23,6 @@ defineProps<{
         <li>Ubicación: {{ nextRace.city }} ({{ nextRace.country }})</li>
       </ul>
     </template>
-    <template v-else-if="nextRaceError">
-      <p>No se pudo cargar la próxima carrera.</p>
-    </template>
-    <template v-else>
-      <p aria-busy="true">Cargando...</p>
-    </template>
+    <p v-else>Datos no encontrados</p>
   </article>
 </template>

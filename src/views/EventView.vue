@@ -9,19 +9,22 @@ const route = useRoute()
 const eventDetails = ref<SeasonEventDetails | null>(null)
 const eventDetailsError = ref<string | null>(null)
 const seasonService = new SeasonService()
+const isLoading = ref(true)
 
 const loadSeasonEventData = async () => {
   eventDetailsError.value = null
+  isLoading.value = true
 
   try {
     eventDetails.value = await seasonService.getSeasonEvent(
       String(route.params.season),
       String(route.params.event),
     )
-    console.log('Detalles del evento:', eventDetails)
   } catch (error) {
     console.error('Error al cargar los detalles del evento:', error)
     eventDetailsError.value = 'No se pudieron cargar los detalles del evento.'
+  } finally {
+    isLoading.value = false
   }
 }
 
@@ -30,7 +33,9 @@ onMounted(loadSeasonEventData)
 
 <template>
   <BreadcrumbsNav />
-  <template v-if="eventDetails">
+  <p v-if="isLoading" aria-busy="true">Cargando detalles del evento...</p>
+  <p v-else-if="eventDetailsError">{{ eventDetailsError }}</p>
+  <template v-else-if="eventDetails">
     <h2>{{ eventDetails.name }}</h2>
     <ul>
       <li><strong>ID del Evento:</strong> {{ eventDetails.id }}</li>
@@ -47,6 +52,5 @@ onMounted(loadSeasonEventData)
       />
     </ul>
   </template>
-  <p v-else-if="eventDetailsError">{{ eventDetailsError }}</p>
-  <p v-else aria-busy="true">Cargando detalles del evento...</p>
+  <p v-else>Datos no encontrados</p>
 </template>

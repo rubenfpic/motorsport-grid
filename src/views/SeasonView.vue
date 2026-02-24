@@ -8,7 +8,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 // Usamos computed para que este valor se actualice automáticamente al cambiar la ruta.
 const seasonYear = computed(() => String(route.params.season ?? ''))
-const { seasonEvents, seasonEventsError } = useSeasonData(seasonYear)
+const { seasonEvents, seasonEventsError, isLoading } = useSeasonData(seasonYear)
 const previousSeason = computed<number | null>(() => {
   if (Number(seasonYear.value) > Number(AVAILABLE_SEASONS[0])) {
     return Number(seasonYear.value) - 1
@@ -40,11 +40,14 @@ const nextSeason = computed<number | null>(() => {
   </span>
   <hr />
   <h2>Temporada {{ route.params.season }}</h2>
-  <dl v-if="seasonEvents.length">
+  <p v-if="isLoading" aria-busy="true">Cargando eventos de la temporada...</p>
+  <p v-else-if="seasonEventsError">{{ seasonEventsError }}</p>
+  <dl v-else-if="seasonEvents.length">
     <template v-for="event in seasonEvents" :key="event.id">
       <dt>
         <strong>{{ event.name }}</strong> -
-        <RouterLink :to="{ name: 'Event', params: { season: seasonYear, event: event.id } }"
+        <RouterLink
+          :to="{ name: 'Event', params: { season: String(route.params.season), event: event.id } }"
           >Evento {{ event.id }}</RouterLink
         >
       </dt>
@@ -52,6 +55,5 @@ const nextSeason = computed<number | null>(() => {
       <dd>{{ event.city }} ({{ event.country }})</dd>
     </template>
   </dl>
-  <p v-else-if="seasonEventsError">{{ seasonEventsError }}</p>
-  <p v-else aria-busy="true">Cargando eventos de la temporada...</p>
+  <p v-else>Sin datos disponibles</p>
 </template>

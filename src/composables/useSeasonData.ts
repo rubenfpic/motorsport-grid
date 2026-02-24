@@ -6,15 +6,19 @@ export function useSeasonData(season: ComputedRef<string>) {
   const seasonEvents = ref<SeasonEvent[]>([])
   const seasonEventsError = ref<string>('')
   const seasonService = new SeasonService()
+  const isLoading = ref(true)
 
   const loadSeasonEventsData = async () => {
     seasonEventsError.value = ''
+    isLoading.value = true
 
     try {
       seasonEvents.value = await seasonService.getSeasonEvents(season.value)
     } catch (error) {
       console.error('Error al obtener los eventos de la temporada:', error)
       seasonEventsError.value = 'No se pudieron cargar los eventos de la temporada.'
+    } finally {
+      isLoading.value = false
     }
   }
 
@@ -26,6 +30,7 @@ export function useSeasonData(season: ComputedRef<string>) {
   return {
     seasonEvents,
     seasonEventsError,
+    isLoading,
     loadSeasonEventsData,
   }
 }

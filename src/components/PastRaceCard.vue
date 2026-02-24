@@ -4,13 +4,16 @@ import type { PastRace } from '@/types/past-race.type'
 defineProps<{
   pastRace: PastRace | null
   pastRaceError: string | null
+  isPastRaceLoading: boolean
 }>()
 </script>
 
 <template>
   <article>
     <header>Última carrera</header>
-    <template v-if="pastRace">
+    <p v-if="isPastRaceLoading" aria-busy="true">Cargando...</p>
+    <p v-else-if="pastRaceError">No se pudo cargar la última carrera.</p>
+    <template v-else-if="pastRace">
       <div class="grid">
         <div>
           <p>
@@ -32,11 +35,6 @@ defineProps<{
         </div>
       </div>
     </template>
-    <template v-else-if="pastRaceError">
-      <p>No se pudo cargar la última carrera.</p>
-    </template>
-    <template v-else>
-      <p aria-busy="true">Cargando...</p>
-    </template>
+    <p v-else>Datos no encontrados</p>
   </article>
 </template>
