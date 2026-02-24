@@ -45,10 +45,9 @@ const nextSeason = computed<number | null>(() => {
   <dl v-else-if="seasonEvents.length">
     <template v-for="event in seasonEvents" :key="event.id">
       <dt>
-        <strong>{{ event.name }}</strong> -
         <RouterLink
           :to="{ name: 'Event', params: { season: String(route.params.season), event: event.id } }"
-          >Evento {{ event.id }}</RouterLink
+          >{{ event.name }}</RouterLink
         >
       </dt>
       <dd>{{ event.date }}</dd>

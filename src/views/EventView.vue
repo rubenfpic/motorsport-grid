@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import SeasonService from '@/services/season.service'
-import { onMounted, ref } from 'vue'
 import type { SeasonEventDetails } from '@/types/season-event.type'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const eventDetails = ref<SeasonEventDetails | null>(null)
@@ -32,7 +32,7 @@ onMounted(loadSeasonEventData)
 </script>
 
 <template>
-  <BreadcrumbsNav />
+  <BreadcrumbsNav :event-name="eventDetails?.name" />
   <hr />
   <p v-if="isLoading" aria-busy="true">Cargando detalles del evento...</p>
   <p v-else-if="eventDetailsError">{{ eventDetailsError }}</p>
