@@ -9,6 +9,7 @@ const { nextRace, pastRace, nextRaceError, pastRaceError, isNextRaceLoading, isP
 </script>
 
 <template>
+  <h2>Dashboard</h2>
   <PastRaceCard
     :pastRace="pastRace"
     :pastRaceError="pastRaceError"

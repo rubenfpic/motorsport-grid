@@ -33,6 +33,7 @@ onMounted(loadSeasonEventData)
 
 <template>
   <BreadcrumbsNav />
+  <hr />
   <p v-if="isLoading" aria-busy="true">Cargando detalles del evento...</p>
   <p v-else-if="eventDetailsError">{{ eventDetailsError }}</p>
   <template v-else-if="eventDetails">

@@ -28,6 +28,7 @@ const nextSeason = computed<number | null>(() => {
 <template>
   <BreadcrumbsNav />
   <hr />
+  <h2>Temporada {{ route.params.season }}</h2>
   <span v-if="previousSeason !== null">
     <RouterLink :to="{ name: 'Season', params: { season: String(previousSeason) } }"
       >◀ {{ previousSeason }}</RouterLink
@@ -39,7 +40,6 @@ const nextSeason = computed<number | null>(() => {
     >
   </span>
   <hr />
-  <h2>Temporada {{ route.params.season }}</h2>
   <p v-if="isLoading" aria-busy="true">Cargando eventos de la temporada...</p>
   <p v-else-if="seasonEventsError">{{ seasonEventsError }}</p>
   <dl v-else-if="seasonEvents.length">
