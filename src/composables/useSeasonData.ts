@@ -1,4 +1,4 @@
-import { SeasonService } from '@/services/season.service'
+import SeasonService from '@/services/season.service'
 import type { SeasonEvent } from '@/types/season-event.type'
 import { onMounted, ref, watch, type ComputedRef } from 'vue'
 

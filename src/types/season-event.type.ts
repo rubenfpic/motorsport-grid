@@ -6,5 +6,9 @@ export type SeasonEvent = {
   city: string
   country: string
   date: string | null
+}
+
+export type SeasonEventDetails = SeasonEvent & {
   poster: string | null
+  video: string | null
 }
