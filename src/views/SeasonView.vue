@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
+import SeasonDetails from '@/components/SeasonDetails.vue'
 import { useSeasonData } from '@/composables/useSeasonData'
 import { AVAILABLE_SEASONS } from '@/constants/api'
 import { computed } from 'vue'
@@ -42,20 +43,10 @@ const nextSeason = computed<number | null>(() => {
   <hr />
   <p v-if="isLoading" aria-busy="true">Cargando eventos de la temporada...</p>
   <p v-else-if="seasonEventsError">{{ seasonEventsError }}</p>
-  <dl v-else-if="seasonEvents.length">
-    <template v-for="event in seasonEvents" :key="event.id">
-      <dt>
-        <RouterLink
-          :to="{
-            name: 'Event',
-            params: { seasonYear: String(route.params.seasonYear), eventId: event.id },
-          }"
-          >{{ event.name }}</RouterLink
-        >
-      </dt>
-      <dd>{{ event.date }}</dd>
-      <dd>{{ event.city }} ({{ event.country }})</dd>
-    </template>
-  </dl>
+  <SeasonDetails
+    v-else-if="seasonEvents.length"
+    :season-year="seasonYear"
+    :season-events="seasonEvents"
+  />
   <p v-else>Sin datos disponibles</p>
 </template>
