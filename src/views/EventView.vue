@@ -1,34 +1,13 @@
 <script setup lang="ts">
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
-import SeasonService from '@/services/season.service'
-import type { SeasonEventDetails } from '@/types/season-event.type'
-import { onMounted, ref } from 'vue'
+import { useEventData } from '@/composables/useEventData'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const eventDetails = ref<SeasonEventDetails | null>(null)
-const eventDetailsError = ref<string | null>(null)
-const seasonService = new SeasonService()
-const isLoading = ref(true)
-
-const loadSeasonEventData = async () => {
-  eventDetailsError.value = null
-  isLoading.value = true
-
-  try {
-    eventDetails.value = await seasonService.getSeasonEvent(
-      String(route.params.season),
-      String(route.params.event),
-    )
-  } catch (error) {
-    console.error('Error al cargar los detalles del evento:', error)
-    eventDetailsError.value = 'No se pudieron cargar los detalles del evento.'
-  } finally {
-    isLoading.value = false
-  }
-}
-
-onMounted(loadSeasonEventData)
+const seasonYear = computed(() => String(route.params.season ?? ''))
+const eventId = computed(() => String(route.params.event ?? ''))
+const { eventDetails, eventDetailsError, isLoading } = useEventData(seasonYear, eventId)
 </script>
 
 <template>
