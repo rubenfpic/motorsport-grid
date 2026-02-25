@@ -7,7 +7,7 @@ import { AVAILABLE_SEASONS } from '@/constants/api'
     <header>Temporadas</header>
     <ul>
       <li v-for="season in AVAILABLE_SEASONS" :key="season">
-        <RouterLink :to="{ name: 'Season', params: { season } }">{{ season }}</RouterLink>
+        <RouterLink :to="{ name: 'Season', params: { seasonYear: season } }">{{ season }}</RouterLink>
       </li>
     </ul>
   </article>

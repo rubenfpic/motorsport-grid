@@ -15,12 +15,12 @@ const routes = [
     component: DashboardView,
   },
   {
-    path: '/season/:season(' + AVAILABLE_SEASONS.join('|') + ')',
+    path: '/season/:seasonYear(' + AVAILABLE_SEASONS.join('|') + ')',
     name: 'Season',
     component: SeasonView,
   },
   {
-    path: '/season/:season/event/:event',
+    path: '/season/:seasonYear/event/:eventId',
     name: 'Event',
     component: EventView,
   },

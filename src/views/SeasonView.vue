@@ -7,7 +7,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 // Usamos computed para que este valor se actualice automáticamente al cambiar la ruta.
-const seasonYear = computed(() => String(route.params.season ?? ''))
+const seasonYear = computed(() => String(route.params.seasonYear ?? ''))
 const { seasonEvents, seasonEventsError, isLoading } = useSeasonData(seasonYear)
 const previousSeason = computed<number | null>(() => {
   if (Number(seasonYear.value) > Number(AVAILABLE_SEASONS[0])) {
@@ -28,14 +28,14 @@ const nextSeason = computed<number | null>(() => {
 <template>
   <BreadcrumbsNav />
   <hr />
-  <h2>Temporada {{ route.params.season }}</h2>
+  <h2>Temporada {{ route.params.seasonYear }}</h2>
   <span v-if="previousSeason !== null">
-    <RouterLink :to="{ name: 'Season', params: { season: String(previousSeason) } }"
+    <RouterLink :to="{ name: 'Season', params: { seasonYear: String(previousSeason) } }"
       >◀ {{ previousSeason }}</RouterLink
     >&nbsp;
   </span>
   <span v-if="nextSeason !== null">
-    <RouterLink :to="{ name: 'Season', params: { season: String(nextSeason) } }"
+    <RouterLink :to="{ name: 'Season', params: { seasonYear: String(nextSeason) } }"
       >{{ nextSeason }} ▶</RouterLink
     >
   </span>
@@ -46,7 +46,10 @@ const nextSeason = computed<number | null>(() => {
     <template v-for="event in seasonEvents" :key="event.id">
       <dt>
         <RouterLink
-          :to="{ name: 'Event', params: { season: String(route.params.season), event: event.id } }"
+          :to="{
+            name: 'Event',
+            params: { seasonYear: String(route.params.seasonYear), eventId: event.id },
+          }"
           >{{ event.name }}</RouterLink
         >
       </dt>

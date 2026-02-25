@@ -3,8 +3,8 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const seasonYear = computed(() => route.params.season as string | undefined)
-const eventId = computed(() => route.params.event as string | undefined)
+const seasonYear = computed(() => route.params.seasonYear as string | undefined)
+const eventId = computed(() => route.params.eventId as string | undefined)
 
 defineProps({
   eventName: {
@@ -26,7 +26,7 @@ defineProps({
       </li>
       <template v-if="seasonYear && eventId">
         <li>
-          <RouterLink :to="{ name: 'Season', params: { season: seasonYear } }">{{
+          <RouterLink :to="{ name: 'Season', params: { seasonYear } }">{{
             seasonYear
           }}</RouterLink>
         </li>

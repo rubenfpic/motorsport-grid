@@ -5,8 +5,8 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const seasonYear = computed(() => String(route.params.season ?? ''))
-const eventId = computed(() => String(route.params.event ?? ''))
+const seasonYear = computed(() => String(route.params.seasonYear ?? ''))
+const eventId = computed(() => String(route.params.eventId ?? ''))
 const { eventDetails, eventDetailsError, isLoading } = useEventData(seasonYear, eventId)
 </script>
 
