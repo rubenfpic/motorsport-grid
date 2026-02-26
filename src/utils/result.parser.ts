@@ -3,22 +3,44 @@ import type { EventResult } from '@/types/event-result.type'
 export function parseResult(result: string | null, maxPositions?: number): EventResult[] {
   if (!result) return []
 
-  maxPositions = maxPositions ?? 3
+  const clean = (value: string) => value.replace(/^\s*\/\s*/, '').trim()
 
-  return result
+  const tabRows = result
     .split(/\r?\n/)
-    .filter((line) => /^\d{1,2}\t/.test(line))
-    .slice(0, maxPositions)
-    .map((line) => {
-      const cols = line
+    .map((row) => row.trim())
+    .filter((row) => /^\d{1,2}\s*\t/.test(row))
+
+  let parsed: EventResult[] = []
+
+  if (tabRows.length) {
+    parsed = tabRows.map((row) => {
+      const cols = row
         .split('\t')
         .map((c) => c.trim())
         .filter(Boolean)
+
       return {
         position: Number(cols[0]),
-        driver: cols[1]?.replace(/^\//, '') ?? '',
-        team: cols[2]?.replace(/^\//, '') ?? '',
-        time: cols[3] ?? null,
+        driver: clean(cols[1] ?? ''),
+        team: clean(cols[2] ?? ''),
+        time: cols[3] ? clean(cols[3]) : null,
       }
     })
+  } else {
+    const compact = result.replace(/\r?\n/g, ' ').replace(/\s+/g, ' ').trim()
+
+    const pattern =
+      /(\d{1,2})\s*\/\s*([^/]+?)\s*\/\s*([^/]+?)\s*\/\s*([^/]+?)(?=\s+\d{1,2}\s*\/|$)/g
+
+    for (const match of compact.matchAll(pattern)) {
+      parsed.push({
+        position: Number(match[1] ?? 0),
+        driver: (match[2] ?? '').trim(),
+        team: (match[3] ?? '').trim(),
+        time: (match[4] ?? '').trim() || null,
+      })
+    }
+  }
+
+  return maxPositions !== undefined ? parsed.slice(0, maxPositions) : parsed
 }
