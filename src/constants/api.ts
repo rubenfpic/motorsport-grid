@@ -7,3 +7,4 @@ export const AVAILABLE_SEASONS = ['2024', '2025', '2026']
 export const NEXT_RACE_ENDPOINT = 'eventsnextleague.php'
 export const PAST_RACE_ENDPOINT = 'eventspastleague.php'
 export const SEASON_ENDPOINT = 'eventsseason.php'
+export const EVENT_ENDPOINT = 'lookupevent.php'

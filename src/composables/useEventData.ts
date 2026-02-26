@@ -1,19 +1,19 @@
-import SeasonService from '@/services/season.service'
-import type { SeasonEventDetails } from '@/types/season-event.type'
+import EventService from '@/services/event.service'
+import type { EventDetails } from '@/types/event-details.type'
 import { onMounted, ref, watch, type ComputedRef } from 'vue'
 
-export function useEventData(seasonYear: ComputedRef<string>, eventId: ComputedRef<string>) {
-  const eventDetails = ref<SeasonEventDetails | null>(null)
+export function useEventData(eventId: ComputedRef<string>) {
+  const eventDetails = ref<EventDetails | null>(null)
   const eventDetailsError = ref<string | null>(null)
   const isLoading = ref(true)
-  const seasonService = new SeasonService()
+  const eventService = new EventService()
 
   const loadSeasonEventData = async () => {
     eventDetailsError.value = null
     isLoading.value = true
 
     try {
-      eventDetails.value = await seasonService.getSeasonEvent(seasonYear.value, eventId.value)
+      eventDetails.value = await eventService.getEventDetails(eventId.value)
     } catch (error) {
       console.error('Error al cargar los detalles del evento:', error)
       eventDetailsError.value = 'No se pudieron cargar los detalles del evento.'
@@ -23,7 +23,7 @@ export function useEventData(seasonYear: ComputedRef<string>, eventId: ComputedR
   }
   onMounted(loadSeasonEventData)
 
-  watch([() => seasonYear.value, () => eventId.value], loadSeasonEventData)
+  watch(() => eventId.value, loadSeasonEventData)
 
   return {
     eventDetails,

@@ -7,8 +7,3 @@ export type SeasonEvent = {
   country: string
   date: string | null
 }
-
-export type SeasonEventDetails = SeasonEvent & {
-  poster: string | null
-  video: string | null
-}
