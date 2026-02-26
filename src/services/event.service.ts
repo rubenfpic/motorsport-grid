@@ -1,5 +1,6 @@
 import { API_KEY, BASE_URL, EVENT_ENDPOINT } from '@/constants/api'
 import type { EventDetails } from '@/types/event-details.type'
+import { parseResult } from '@/utils/result.parser'
 
 type EventDetailsApi = {
   idEvent: string
@@ -42,7 +43,7 @@ export default class EventService {
       date: event.strTimestamp ? event.strTimestamp.slice(0, 10) : null,
       poster: event.strPoster || null,
       video: event.strVideo || null,
-      result: event.strResult || null,
+      result: parseResult(event.strResult),
     }
   }
 }
