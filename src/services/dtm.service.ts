@@ -1,5 +1,3 @@
-import type { PastRace, PodiumEntry } from '@/types/past-race.type'
-import type { NextRace } from '@/types/next-race.type'
 import {
   API_KEY,
   BASE_URL,
@@ -7,6 +5,9 @@ import {
   NEXT_RACE_ENDPOINT,
   PAST_RACE_ENDPOINT,
 } from '@/constants/api'
+import type { NextRace } from '@/types/next-race.type'
+import type { PastRace } from '@/types/past-race.type'
+import { parseResult } from '@/utils/result.parser'
 
 export class DtmService {
   async getNextRace(): Promise<NextRace | null> {
@@ -51,26 +52,6 @@ export class DtmService {
 
     const event = data.events[0]
 
-    function parsePodium(result: string | null): PodiumEntry[] {
-      if (!result) return []
-
-      return result
-        .split(/\r?\n/)
-        .filter((line) => /^0[1-3]\t/.test(line))
-        .slice(0, 3)
-        .map((line) => {
-          const cols = line
-            .split('\t')
-            .map((c) => c.trim())
-            .filter(Boolean)
-          return {
-            position: Number(cols[0]),
-            driver: cols[1]?.replace(/^\//, '') ?? '',
-            team: cols[2]?.replace(/^\//, '') ?? '',
-          }
-        })
-    }
-
     return {
       id: event.idEvent,
       name: event.strEvent,
@@ -78,7 +59,7 @@ export class DtmService {
       city: event.strCity,
       country: event.strCountry,
       date: event.strTimestamp ? event.strTimestamp.slice(0, 10) : null,
-      podium: parsePodium(event.strResult),
+      podium: parseResult(event.strResult, 3),
     }
   }
 }

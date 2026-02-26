@@ -1,8 +1,4 @@
-export type PodiumEntry = {
-  position: number;
-  driver: string;
-  team: string
-}
+import type { EventResult } from '@/types/event-result.type'
 
 export type PastRace = {
   id: string
@@ -11,6 +7,5 @@ export type PastRace = {
   city: string
   country: string
   date: string | null
-  podium: PodiumEntry[]
+  podium: EventResult[]
 }
-
