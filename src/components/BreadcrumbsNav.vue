@@ -26,14 +26,13 @@ defineProps({
       </li>
       <template v-if="seasonYear && eventId">
         <li>
-          <RouterLink :to="{ name: 'Season', params: { seasonYear } }">{{
-            seasonYear
-          }}</RouterLink>
+          <RouterLink :to="{ name: 'Season', params: { seasonYear } }">{{ seasonYear }}</RouterLink>
         </li>
         <li aria-current="page">
           {{ eventName || eventId }}
         </li>
       </template>
+      <li v-if="$route.name === 'Teams'" aria-current="page">Equipos</li>
     </ul>
   </nav>
 </template>

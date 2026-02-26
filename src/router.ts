@@ -1,6 +1,7 @@
 import DashboardView from '@/views/DashboardView.vue'
 import SeasonView from '@/views/SeasonView.vue'
 import EventView from '@/views/EventView.vue'
+import TeamsView from '@/views/TeamsView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { AVAILABLE_SEASONS } from '@/constants/api'
 
@@ -24,6 +25,7 @@ const routes = [
     name: 'Event',
     component: EventView,
   },
+  { path: '/teams', name: 'Teams', component: TeamsView },
   {
     path: '/:pathMatch(.*)*',
     redirect: '/',
