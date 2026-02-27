@@ -46,4 +46,37 @@ export class TeamService {
       equipment: team.strEquipment || null,
     }))
   }
+
+  async getTeamDetails(teamId: number): Promise<Team | null> {
+    const url = `${BASE_URL}${API_KEY}/${SEARCH_ALL_TEAMS_ENDPOINT}?id=${LEAGUE_ID}`
+    const response = await fetch(url)
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP ${response.status} al obtener los detalles del equipo`)
+    }
+
+    const data = (await response.json()) as TeamsResponse
+
+    if (!data?.teams?.length) {
+      return null
+    }
+
+    const teamData = data.teams.find((team) => Number(team.idTeam) === teamId)
+
+    if (!teamData) {
+      return null
+    }
+
+    return {
+      id: Number(teamData.idTeam),
+      name: teamData.strTeam,
+      altName: teamData.strAlternate || null,
+      formed: teamData.intFormedYear ? Number(teamData.intFormedYear) : null,
+      location: teamData.strLocation || null,
+      country: teamData.strCountry || null,
+      description: teamData.strDescriptionEN || null,
+      badge: teamData.strBadge || null,
+      equipment: teamData.strEquipment || null,
+    }
+  }
 }

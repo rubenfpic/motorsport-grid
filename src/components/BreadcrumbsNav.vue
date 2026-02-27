@@ -12,6 +12,11 @@ defineProps({
     required: false,
     default: '',
   },
+  teamName: {
+    type: String,
+    required: false,
+    default: '',
+  },
 })
 </script>
 
@@ -33,6 +38,14 @@ defineProps({
         </li>
       </template>
       <li v-if="$route.name === 'Teams'" aria-current="page">Equipos</li>
+      <template v-if="teamName">
+        <li>
+          <RouterLink :to="{ name: 'Teams' }">Equipos</RouterLink>
+        </li>
+        <li v-if="teamName" aria-current="page">
+          {{ teamName }}
+        </li>
+      </template>
     </ul>
   </nav>
 </template>
