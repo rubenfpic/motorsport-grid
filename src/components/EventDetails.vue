@@ -17,7 +17,7 @@ defineProps<{
     <li><strong>País:</strong> {{ eventDetails.country }}</li>
     <li v-if="eventDetails.date"><strong>Fecha:</strong> {{ eventDetails.date }}</li>
   </ul>
-  <table>
+  <table v-if="eventDetails.result.length">
     <thead>
       <tr>
         <th scope="col">Posición</th>
