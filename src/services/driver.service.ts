@@ -2,8 +2,8 @@ import { API_KEY, BASE_URL, LOOKUP_ALL_PLAYERS_ENDPOINT } from '@/constants/api'
 import type { Driver } from '@/types/driver.type'
 
 type DriverApi = {
-  idDriver: string
-  strDriver: string
+  idPlayer: string
+  strPlayer: string
   idTeam: string | null
   strTeam: string | null
   strNationality: string | null
@@ -12,7 +12,7 @@ type DriverApi = {
 }
 
 type DriversResponse = {
-  drivers: DriverApi[] | null
+  player: DriverApi[] | null
 }
 
 export class DriverService {
@@ -26,15 +26,15 @@ export class DriverService {
 
     const data = (await response.json()) as DriversResponse
 
-    if (!data?.drivers?.length) {
+    if (!data?.player?.length) {
       return []
     }
 
-    const drivers = data.drivers ?? []
+    const drivers = data.player ?? []
 
     return drivers.map((driver) => ({
-      id: Number(driver.idDriver),
-      name: driver.strDriver,
+      id: Number(driver.idPlayer),
+      name: driver.strPlayer,
       teamId: driver.idTeam != null ? Number(driver.idTeam) : null,
       team: driver.strTeam,
       nationality: driver.strNationality,

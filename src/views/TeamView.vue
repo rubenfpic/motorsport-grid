@@ -2,9 +2,11 @@
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import { useTeamData } from '@/composables/useTeamData'
 import { useRoute } from 'vue-router'
+import { useDriverData } from '@/composables/useDriverData'
 
 const route = useRoute()
 const { team, teamError, isTeamLoading } = useTeamData(Number(route.params.teamId))
+const { drivers, driversError, isDriversLoading } = useDriverData(Number(route.params.teamId))
 </script>
 
 <template>
@@ -20,4 +22,12 @@ const { team, teamError, isTeamLoading } = useTeamData(Number(route.params.teamI
     <p><strong>Descripción:</strong> {{ team.description }}</p>
   </template>
   <p v-else>Sin datos disponibles</p>
+  <hr />
+  <h3>Pilotos</h3>
+  <p v-if="isDriversLoading" aria-busy="true">Cargando pilotos...</p>
+  <p v-else-if="driversError">{{ driversError }}</p>
+  <ul v-else-if="drivers.length > 0">
+    <li v-for="driver in drivers" :key="driver.id">{{ driver.name }} ({{ driver.nationality }})</li>
+  </ul>
+  <p v-else>No hay pilotos disponibles para este equipo.</p>
 </template>
