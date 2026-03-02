@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import NextRaceCard from '@/components/NextRaceCard.vue'
-import PastRaceCard from '@/components/PastRaceCard.vue'
+import NextEventCard from '@/components/NextEventCard.vue'
+import PastEventCard from '@/components/PastEventCard.vue'
 import SeasonLinksCard from '@/components/SeasonLinksCard.vue'
 import TeamLinksCard from '@/components/TeamLinksCard.vue'
 import { useDashboard } from '@/composables/useDashboard'
 
-const { nextRace, pastRace, nextRaceError, pastRaceError, isNextRaceLoading, isPastRaceLoading } =
+const { nextEvent, pastEvent, nextEventError, pastEventError, isNextEventLoading, isPastEventLoading } =
   useDashboard()
 </script>
 
 <template>
   <h2>Dashboard</h2>
   <TeamLinksCard />
-  <PastRaceCard
-    :pastRace="pastRace"
-    :pastRaceError="pastRaceError"
-    :isPastRaceLoading="isPastRaceLoading"
+  <PastEventCard
+    :pastEvent="pastEvent"
+    :pastEventError="pastEventError"
+    :isPastEventLoading="isPastEventLoading"
   />
   <div class="grid">
-    <NextRaceCard
-      :nextRace="nextRace"
-      :nextRaceError="nextRaceError"
-      :isNextRaceLoading="isNextRaceLoading"
+    <NextEventCard
+      :nextEvent="nextEvent"
+      :nextEventError="nextEventError"
+      :isNextEventLoading="isNextEventLoading"
     />
     <SeasonLinksCard />
   </div>

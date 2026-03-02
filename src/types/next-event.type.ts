@@ -1,4 +1,4 @@
-export type NextRace = {
+export type NextEvent = {
   id: string
   name: string
   venue: string

@@ -1,6 +1,6 @@
 import type { EventResult } from '@/types/event-result.type'
 
-export type PastRace = {
+export type PastEvent = {
   id: string
   name: string
   venue: string

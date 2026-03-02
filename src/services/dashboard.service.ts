@@ -2,16 +2,16 @@ import {
   API_KEY,
   BASE_URL,
   LEAGUE_ID,
-  NEXT_RACE_ENDPOINT,
-  PAST_RACE_ENDPOINT,
+  NEXT_EVENT_ENDPOINT,
+  PAST_EVENT_ENDPOINT,
 } from '@/constants/api'
-import type { NextRace } from '@/types/next-race.type'
-import type { PastRace } from '@/types/past-race.type'
+import type { NextEvent } from '@/types/next-event.type'
+import type { PastEvent } from '@/types/past-event.type'
 import { parseResult } from '@/utils/result.parser'
 
 export class DashboardService {
-  async getNextRace(): Promise<NextRace | null> {
-    const url = `${BASE_URL}${API_KEY}/${NEXT_RACE_ENDPOINT}?id=${LEAGUE_ID}`
+  async getNextEvent(): Promise<NextEvent | null> {
+    const url = `${BASE_URL}${API_KEY}/${NEXT_EVENT_ENDPOINT}?id=${LEAGUE_ID}`
     const response = await fetch(url)
 
     if (!response.ok) {
@@ -36,8 +36,8 @@ export class DashboardService {
     }
   }
 
-  async getPastRace(): Promise<PastRace | null> {
-    const url = `${BASE_URL}${API_KEY}/${PAST_RACE_ENDPOINT}?id=${LEAGUE_ID}`
+  async getPastEvent(): Promise<PastEvent | null> {
+    const url = `${BASE_URL}${API_KEY}/${PAST_EVENT_ENDPOINT}?id=${LEAGUE_ID}`
     const response = await fetch(url)
 
     if (!response.ok) {
