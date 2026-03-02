@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NextEvent } from '@/types/next-event.type'
+import type { NextEvent } from '@/types'
 
 defineProps<{
   nextEvent: NextEvent | null

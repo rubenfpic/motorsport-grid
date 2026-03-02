@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Driver } from '@/types/driver.type'
+import type { Driver } from '@/types'
 
 defineProps<{
   driverDetails: Driver

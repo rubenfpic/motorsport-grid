@@ -5,8 +5,7 @@ import {
   NEXT_EVENT_ENDPOINT,
   PAST_EVENT_ENDPOINT,
 } from '@/constants/api'
-import type { NextEvent } from '@/types/next-event.type'
-import type { PastEvent } from '@/types/past-event.type'
+import type { NextEvent, PastEvent } from '@/types'
 import { parseResult } from '@/utils/result.parser'
 
 export class DashboardService {

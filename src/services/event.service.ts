@@ -1,5 +1,5 @@
 import { API_KEY, BASE_URL, EVENT_ENDPOINT } from '@/constants/api'
-import type { EventDetails } from '@/types/event-details.type'
+import type { EventDetails } from '@/types'
 import { parseResult } from '@/utils/result.parser'
 
 type EventDetailsApi = {

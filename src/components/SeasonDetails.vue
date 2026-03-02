@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SeasonEvent } from '@/types/season-event.type'
+import type { SeasonEvent } from '@/types'
 
 defineProps<{
   seasonYear: string

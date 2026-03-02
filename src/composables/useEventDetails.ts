@@ -1,5 +1,5 @@
 import EventService from '@/services/event.service'
-import type { EventDetails } from '@/types/event-details.type'
+import type { EventDetails } from '@/types'
 import { onMounted, ref, watch, type ComputedRef } from 'vue'
 
 export function useEventDetails(eventId: ComputedRef<string>) {

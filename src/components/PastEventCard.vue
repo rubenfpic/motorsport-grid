@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PastEvent } from '@/types/past-event.type'
+import type { PastEvent } from '@/types'
 
 defineProps<{
   pastEvent: PastEvent | null

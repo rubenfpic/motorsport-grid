@@ -1,5 +1,5 @@
 import SeasonService from '@/services/season.service'
-import type { SeasonEvent } from '@/types/season-event.type'
+import type { SeasonEvent } from '@/types'
 import { onMounted, ref, watch, type ComputedRef } from 'vue'
 
 export function useSeasonEvents(seasonYear: ComputedRef<string>) {

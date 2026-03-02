@@ -4,7 +4,7 @@ import {
   LOOKUP_ALL_PLAYERS_ENDPOINT,
   LOOKUPPLAYER_ENDPOINT,
 } from '@/constants/api'
-import type { Driver } from '@/types/driver.type'
+import type { Driver } from '@/types'
 
 type DriverApi = {
   idPlayer: string

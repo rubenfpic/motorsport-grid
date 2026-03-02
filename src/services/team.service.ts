@@ -1,5 +1,5 @@
 import { API_KEY, BASE_URL, LEAGUE_ID, SEARCH_ALL_TEAMS_ENDPOINT } from '@/constants/api'
-import type { Team } from '@/types/team.type'
+import type { Team } from '@/types'
 
 type TeamApi = {
   idTeam: string

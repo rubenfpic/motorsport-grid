@@ -1,6 +1,5 @@
 import { DashboardService } from '@/services/dashboard.service'
-import type { NextEvent } from '@/types/next-event.type'
-import type { PastEvent } from '@/types/past-event.type'
+import type { NextEvent, PastEvent } from '@/types'
 import { onMounted, ref } from 'vue'
 
 export function useDashboard() {

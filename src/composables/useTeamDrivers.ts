@@ -1,5 +1,5 @@
 import { DriverService } from '@/services/driver.service'
-import type { Driver } from '@/types/driver.type'
+import type { Driver } from '@/types'
 import { onMounted, ref } from 'vue'
 
 export function useTeamDrivers(teamId: number) {

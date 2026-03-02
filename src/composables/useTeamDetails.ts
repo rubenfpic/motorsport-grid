@@ -1,5 +1,5 @@
 import { TeamService } from '@/services/team.service'
-import type { Team } from '@/types/team.type'
+import type { Team } from '@/types'
 import { onMounted, ref } from 'vue'
 
 export function useTeamDetails(teamId: number) {

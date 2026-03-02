@@ -1,4 +1,4 @@
-import type { EventResult } from '@/types/event-result.type'
+import type { EventResult } from '@/types'
 
 export function parseResult(result: string | null, maxPositions?: number): EventResult[] {
   if (!result) return []

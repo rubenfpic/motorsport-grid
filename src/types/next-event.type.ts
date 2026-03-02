@@ -1,8 +1,3 @@
-export type NextEvent = {
-  id: string
-  name: string
-  venue: string
-  city: string
-  country: string
-  date: string | null
-}
+import type { EventBase } from '@/types/event-base.type'
+
+export type NextEvent = EventBase

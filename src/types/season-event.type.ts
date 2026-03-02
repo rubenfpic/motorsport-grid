@@ -1,9 +1,5 @@
-export type SeasonEvent = {
-  id: string
-  name: string
+import type { EventBase } from '@/types/event-base.type'
+
+export type SeasonEvent = EventBase & {
   season: string
-  venue: string
-  city: string
-  country: string
-  date: string | null
 }
