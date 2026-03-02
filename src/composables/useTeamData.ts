@@ -31,7 +31,6 @@ export function useTeamData(teamId?: number) {
 
     try {
       team.value = await teamService.getTeamDetails(teamId)
-      console.log('Detalles del equipo cargados:', team.value)
     } catch (error) {
       console.error('Error al obtener los detalles del equipo:', error)
       teamError.value = 'No se pudieron cargar los detalles del equipo.'

@@ -27,7 +27,11 @@ const { drivers, driversError, isDriversLoading } = useDriverData(Number(route.p
   <p v-if="isDriversLoading" aria-busy="true">Cargando pilotos...</p>
   <p v-else-if="driversError">{{ driversError }}</p>
   <ul v-else-if="drivers.length > 0">
-    <li v-for="driver in drivers" :key="driver.id">{{ driver.name }} ({{ driver.nationality }})</li>
+    <li v-for="driver in drivers" :key="driver.id">
+      <RouterLink :to="{ name: 'DriverDetails', params: { driverId: driver.id } }">
+        {{ driver.name }} ({{ driver.nationality }})
+      </RouterLink>
+    </li>
   </ul>
   <p v-else>No hay pilotos disponibles para este equipo.</p>
 </template>

@@ -14,7 +14,6 @@ export function useDriverData(teamId?: number) {
 
     try {
       drivers.value = await driverService.getDriversByTeam(teamId)
-      console.log('Pilotos del equipo cargados:', drivers.value)
     } catch (error) {
       console.error('Error al obtener los pilotos del equipo:', error)
       driversError.value = 'No se pudieron cargar los pilotos del equipo.'

@@ -17,15 +17,28 @@ defineProps({
     required: false,
     default: '',
   },
+  teamId: {
+    type: Number,
+    required: false,
+    default: null,
+  },
+  driverName: {
+    type: String,
+    required: false,
+    default: '',
+  },
 })
 </script>
 
 <template>
   <nav aria-label="breadcrumb">
     <ul>
+      <!-- DASHBOARD -->
       <li>
         <RouterLink :to="{ name: 'Dashboard' }">Dashboard</RouterLink>
       </li>
+
+      <!-- SEASONS -->
       <li v-if="seasonYear && !eventId" aria-current="page">
         {{ seasonYear }}
       </li>
@@ -37,14 +50,27 @@ defineProps({
           {{ eventName || eventId }}
         </li>
       </template>
+
+      <!-- TEAMS -->
       <li v-if="$route.name === 'Teams'" aria-current="page">Equipos</li>
       <template v-if="teamName">
         <li>
           <RouterLink :to="{ name: 'Teams' }">Equipos</RouterLink>
         </li>
-        <li v-if="teamName" aria-current="page">
+        <li v-if="teamName && !driverName" aria-current="page">
           {{ teamName }}
         </li>
+        <template v-if="driverName">
+          <li>
+            <RouterLink v-if="teamId" :to="{ name: 'TeamDetails', params: { teamId } }">
+              {{ teamName }}
+            </RouterLink>
+            <template v-else>{{ teamName }}</template>
+          </li>
+          <li aria-current="page">
+            {{ driverName }}
+          </li>
+        </template>
       </template>
     </ul>
   </nav>
