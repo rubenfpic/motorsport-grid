@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import EventDetails from '@/components/EventDetails.vue'
-import { useEventData } from '@/composables/useEventData'
+import { useEventDetails } from '@/composables/useEventDetails'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const eventId = computed(() => String(route.params.eventId ?? ''))
-const { eventDetails, eventDetailsError, isLoading } = useEventData(eventId)
+const { eventDetails, eventDetailsError, isLoading } = useEventDetails(eventId)
 </script>
 
 <template>

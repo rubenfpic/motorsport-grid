@@ -9,7 +9,7 @@ import type { NextRace } from '@/types/next-race.type'
 import type { PastRace } from '@/types/past-race.type'
 import { parseResult } from '@/utils/result.parser'
 
-export class DtmService {
+export class DashboardService {
   async getNextRace(): Promise<NextRace | null> {
     const url = `${BASE_URL}${API_KEY}/${NEXT_RACE_ENDPOINT}?id=${LEAGUE_ID}`
     const response = await fetch(url)

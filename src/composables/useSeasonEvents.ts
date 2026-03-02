@@ -2,18 +2,18 @@ import SeasonService from '@/services/season.service'
 import type { SeasonEvent } from '@/types/season-event.type'
 import { onMounted, ref, watch, type ComputedRef } from 'vue'
 
-export function useSeasonData(seasonYear: ComputedRef<string>) {
+export function useSeasonEvents(seasonYear: ComputedRef<string>) {
   const seasonEvents = ref<SeasonEvent[]>([])
   const seasonEventsError = ref<string>('')
   const seasonService = new SeasonService()
   const isLoading = ref(true)
 
-  const loadSeasonEventsData = async () => {
+  const loadSeasonEvents = async () => {
     seasonEventsError.value = ''
     isLoading.value = true
 
     try {
-      seasonEvents.value = await seasonService.getSeasonEvents(seasonYear.value)
+      seasonEvents.value = await seasonService.getSeasonEventsByYear(seasonYear.value)
     } catch (error) {
       console.error('Error al obtener los eventos de la temporada:', error)
       seasonEventsError.value = 'No se pudieron cargar los eventos de la temporada.'
@@ -22,15 +22,15 @@ export function useSeasonData(seasonYear: ComputedRef<string>) {
     }
   }
 
-  onMounted(loadSeasonEventsData)
+  onMounted(loadSeasonEvents)
 
   // Si cambia la temporada, volvemos a pedir los eventos sin recargar la página.
-  watch(() => seasonYear.value, loadSeasonEventsData)
+  watch(() => seasonYear.value, loadSeasonEvents)
 
   return {
     seasonEvents,
     seasonEventsError,
     isLoading,
-    loadSeasonEventsData,
+    loadSeasonEvents,
   }
 }

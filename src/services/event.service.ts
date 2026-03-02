@@ -20,7 +20,7 @@ type EventDetailsResponse = {
 }
 
 export default class EventService {
-  async getEventDetails(eventId: string): Promise<EventDetails | null> {
+  async getEventById(eventId: string): Promise<EventDetails | null> {
     const url = `${BASE_URL}${API_KEY}/${EVENT_ENDPOINT}?id=${eventId}`
     const response = await fetch(url)
 

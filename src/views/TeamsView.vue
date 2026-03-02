@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
-import { useTeamData } from '@/composables/useTeamData'
+import { useTeams } from '@/composables/useTeams'
 
-const { teams, teamsError, isLoading } = useTeamData()
+const { teams, teamsError, isLoading } = useTeams()
 </script>
 
 <template>

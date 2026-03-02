@@ -1,18 +1,18 @@
-import { DtmService } from '@/services/dtm.service'
+import { DashboardService } from '@/services/dashboard.service'
 import type { NextRace } from '@/types/next-race.type'
 import type { PastRace } from '@/types/past-race.type'
 import { onMounted, ref } from 'vue'
 
-export function useDashboardData() {
+export function useDashboard() {
   const nextRace = ref<NextRace | null>(null)
   const pastRace = ref<PastRace | null>(null)
   const nextRaceError = ref<string | null>(null)
   const pastRaceError = ref<string | null>(null)
   const isNextRaceLoading = ref(true)
   const isPastRaceLoading = ref(true)
-  const dtmService = new DtmService()
+  const dtmService = new DashboardService()
 
-  const loadDashboardData = async () => {
+  const loadDashboard = async () => {
     nextRaceError.value = null
     pastRaceError.value = null
     isNextRaceLoading.value = true
@@ -37,7 +37,7 @@ export function useDashboardData() {
     }
   }
 
-  onMounted(loadDashboardData)
+  onMounted(loadDashboard)
 
   return {
     nextRace,
@@ -46,6 +46,6 @@ export function useDashboardData() {
     pastRaceError,
     isNextRaceLoading,
     isPastRaceLoading,
-    loadDashboardData,
+    loadDashboard,
   }
 }

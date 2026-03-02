@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import SeasonDetails from '@/components/SeasonDetails.vue'
-import { useSeasonData } from '@/composables/useSeasonData'
+import { useSeasonEvents } from '@/composables/useSeasonEvents'
 import { AVAILABLE_SEASONS } from '@/constants/api'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
@@ -9,7 +9,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 // Usamos computed para que este valor se actualice automáticamente al cambiar la ruta.
 const seasonYear = computed(() => String(route.params.seasonYear ?? ''))
-const { seasonEvents, seasonEventsError, isLoading } = useSeasonData(seasonYear)
+const { seasonEvents, seasonEventsError, isLoading } = useSeasonEvents(seasonYear)
 const previousSeason = computed<number | null>(() => {
   if (Number(seasonYear.value) > Number(AVAILABLE_SEASONS[0])) {
     return Number(seasonYear.value) - 1

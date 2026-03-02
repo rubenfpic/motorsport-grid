@@ -47,7 +47,7 @@ export class TeamService {
     }))
   }
 
-  async getTeamDetails(teamId: number): Promise<Team | null> {
+  async getTeamById(teamId: number): Promise<Team | null> {
     const url = `${BASE_URL}${API_KEY}/${SEARCH_ALL_TEAMS_ENDPOINT}?id=${LEAGUE_ID}`
     const response = await fetch(url)
 

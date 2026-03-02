@@ -2,18 +2,18 @@ import { DriverService } from '@/services/driver.service'
 import type { Driver } from '@/types/driver.type'
 import { onMounted, ref } from 'vue'
 
-export function useDriverData(teamId?: number) {
+export function useTeamDrivers(teamId: number) {
   const drivers = ref<Driver[]>([])
   const driversError = ref<string>('')
   const isDriversLoading = ref(true)
   const driverService = new DriverService()
 
-  const loadDriversData = async (teamId: number) => {
+  const loadTeamDrivers = async () => {
     driversError.value = ''
     isDriversLoading.value = true
 
     try {
-      drivers.value = await driverService.getDriversByTeam(teamId)
+      drivers.value = await driverService.getDriversByTeamId(teamId)
     } catch (error) {
       console.error('Error al obtener los pilotos del equipo:', error)
       driversError.value = 'No se pudieron cargar los pilotos del equipo.'
@@ -23,13 +23,13 @@ export function useDriverData(teamId?: number) {
   }
 
   onMounted(() => {
-    if (teamId !== undefined) void loadDriversData(teamId)
+    void loadTeamDrivers()
   })
 
   return {
     drivers,
     driversError,
     isDriversLoading,
-    loadDriversData,
+    loadTeamDrivers,
   }
 }

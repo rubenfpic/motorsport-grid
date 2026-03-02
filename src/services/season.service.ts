@@ -18,8 +18,8 @@ type SeasonEventsResponse = {
 }
 
 export default class SeasonService {
-  async getSeasonEvents(season: string): Promise<SeasonEvent[]> {
-    const url = `${BASE_URL}${API_KEY}/${SEASON_ENDPOINT}?id=${LEAGUE_ID}&s=${season}`
+  async getSeasonEventsByYear(seasonYear: string): Promise<SeasonEvent[]> {
+    const url = `${BASE_URL}${API_KEY}/${SEASON_ENDPOINT}?id=${LEAGUE_ID}&s=${seasonYear}`
     const response = await fetch(url)
 
     if (!response.ok) {

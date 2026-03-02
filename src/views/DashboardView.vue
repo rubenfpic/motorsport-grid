@@ -3,10 +3,10 @@ import NextRaceCard from '@/components/NextRaceCard.vue'
 import PastRaceCard from '@/components/PastRaceCard.vue'
 import SeasonLinksCard from '@/components/SeasonLinksCard.vue'
 import TeamLinksCard from '@/components/TeamLinksCard.vue'
-import { useDashboardData } from '@/composables/useDashboardData'
+import { useDashboard } from '@/composables/useDashboard'
 
 const { nextRace, pastRace, nextRaceError, pastRaceError, isNextRaceLoading, isPastRaceLoading } =
-  useDashboardData()
+  useDashboard()
 </script>
 
 <template>

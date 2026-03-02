@@ -25,7 +25,7 @@ type DriverDetailsResponse = {
 }
 
 export class DriverService {
-  async getDriversByTeam(teamId: number): Promise<Driver[]> {
+  async getDriversByTeamId(teamId: number): Promise<Driver[]> {
     const url = `${BASE_URL}${API_KEY}/${LOOKUP_ALL_PLAYERS_ENDPOINT}?id=${teamId}`
     const response = await fetch(url)
 
