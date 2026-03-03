@@ -12,8 +12,8 @@ defineProps<{
 <template>
   <h2>
     {{ team.name }}
-    <button v-if="favorite.isFavoriteTeam(team.id)" @click="favorite.clearFavoriteTeam()">☆</button>
-    <button v-else @click="favorite.setFavoriteTeam(team.id)">★</button>
+    <button v-if="favorite.isFavoriteTeam(team.id)" @click="favorite.clearFavoriteTeam()">★</button>
+    <button v-else @click="favorite.setFavoriteTeam(team.id)">☆</button>
   </h2>
   <p><strong>ID:</strong> {{ team.id }}</p>
   <p><strong>País:</strong> {{ team.country }}</p>
