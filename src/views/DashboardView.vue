@@ -4,14 +4,9 @@ import NextEventCard from '@/components/NextEventCard.vue'
 import PastEventCard from '@/components/PastEventCard.vue'
 import SeasonLinksCard from '@/components/SeasonLinksCard.vue'
 import TeamLinksCard from '@/components/TeamLinksCard.vue'
-import { useDashboard, useTeamDetails } from '@/composables'
-import { useFavoriteStore } from '@/stores/useFavoriteStore'
-import { computed } from 'vue'
+import { useDashboard, useFavoriteTeam } from '@/composables'
 
-const favorite = useFavoriteStore()
-const favoriteTeamId = computed(() => favorite.favoriteTeamId)
-const favoriteTeamDetails = favoriteTeamId.value ? useTeamDetails(favoriteTeamId.value) : null
-const favoriteTeamName = computed(() => favoriteTeamDetails?.team.value?.name ?? 'Equipo favorito')
+const { favoriteTeam, error, isLoading, isEmpty } = useFavoriteTeam()
 const {
   nextEvent,
   pastEvent,
@@ -24,7 +19,13 @@ const {
 
 <template>
   <h2>Dashboard</h2>
-  <FavoritesCard :teamId="favoriteTeamId ?? undefined" :teamName="favoriteTeamName" />
+  <FavoritesCard
+    :team-id="favoriteTeam?.id"
+    :team-name="favoriteTeam?.name ?? ''"
+    :is-loading="isLoading"
+    :error="error"
+    :is-empty="isEmpty"
+  />
   <TeamLinksCard />
   <PastEventCard
     :pastEvent="pastEvent"

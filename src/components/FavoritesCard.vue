@@ -10,13 +10,30 @@ defineProps({
     required: false,
     default: '',
   },
+  isLoading: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
+  error: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  isEmpty: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 </script>
 
 <template>
   <article>
     <header>Favoritos</header>
-    <template v-if="teamId">
+    <p v-if="isLoading">Cargando...</p>
+    <p v-else-if="error">{{ error }}</p>
+    <template v-else-if="teamId">
       <p>Equipo favorito:</p>
       <RouterLink :to="{ name: 'TeamDetails', params: { teamId: teamId } }">
         {{ teamName }}
