@@ -3,7 +3,9 @@ import { defineStore } from 'pinia'
 const LS_FAVORITE_TEAM_KEY = 'favoriteTeamId'
 
 export const useFavoriteStore = defineStore('favorite', {
-  state: (): { favoriteTeamId: number | null } => ({
+  state: (): {
+    favoriteTeamId: number | null
+  } => ({
     favoriteTeamId: null,
   }),
   getters: {
