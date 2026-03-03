@@ -2,9 +2,8 @@
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import TeamDetails from '@/components/TeamDetails.vue'
 import TeamDriversList from '@/components/TeamDriversList.vue'
-import { useTeamDetails } from '@/composables/useTeamDetails'
+import { useTeamDetails, useTeamDrivers } from '@/composables'
 import { useRoute } from 'vue-router'
-import { useTeamDrivers } from '@/composables/useTeamDrivers'
 
 const route = useRoute()
 const { team, teamError, isLoading: isTeamLoading } = useTeamDetails(Number(route.params.teamId))

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import EventDetails from '@/components/EventDetails.vue'
-import { useEventDetails } from '@/composables/useEventDetails'
+import { useEventDetails } from '@/composables'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 

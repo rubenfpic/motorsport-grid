@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useDriverDetails } from '@/composables/useDriverDetails'
-import { useRoute } from 'vue-router'
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import DriverDetails from '@/components/DriverDetails.vue'
+import { useDriverDetails } from '@/composables'
+import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const driverId = Number(route.params.driverId)

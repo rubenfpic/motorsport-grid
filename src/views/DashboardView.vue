@@ -3,7 +3,7 @@ import NextEventCard from '@/components/NextEventCard.vue'
 import PastEventCard from '@/components/PastEventCard.vue'
 import SeasonLinksCard from '@/components/SeasonLinksCard.vue'
 import TeamLinksCard from '@/components/TeamLinksCard.vue'
-import { useDashboard } from '@/composables/useDashboard'
+import { useDashboard } from '@/composables'
 
 const { nextEvent, pastEvent, nextEventError, pastEventError, isNextEventLoading, isPastEventLoading } =
   useDashboard()

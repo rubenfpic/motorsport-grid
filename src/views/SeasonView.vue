@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
 import SeasonDetails from '@/components/SeasonDetails.vue'
-import { useSeasonEvents } from '@/composables/useSeasonEvents'
+import { useSeasonEvents } from '@/composables'
 import { AVAILABLE_SEASONS } from '@/constants/api'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'

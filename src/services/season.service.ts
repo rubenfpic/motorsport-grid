@@ -1,5 +1,5 @@
-import type { SeasonEvent } from '@/types'
 import { API_KEY, BASE_URL, LEAGUE_ID, SEASON_ENDPOINT } from '@/constants/api'
+import type { SeasonEvent } from '@/types'
 
 // Forma "cruda" de cada evento tal como llega desde la API.
 type SeasonEventApi = {
