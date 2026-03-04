@@ -1,6 +1,7 @@
 import App from '@/App.vue'
 import router from '@/router'
 import { useFavoriteStore } from '@/stores/useFavoriteStore'
+import '@/web-components/fav-star.js'
 import '@picocss/pico/css/pico.min.css'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
