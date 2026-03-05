@@ -8,6 +8,7 @@ defineProps<{
 
 <template>
   <ul>
+    <li><strong>ID:</strong> <status-badge :label="driverDetails.id" /></li>
     <li><strong>Nombre:</strong> {{ driverDetails.name }}</li>
     <li><strong>Equipo:</strong> {{ driverDetails.team }}</li>
     <li><strong>Nacionalidad:</strong> {{ driverDetails.nationality }}</li>

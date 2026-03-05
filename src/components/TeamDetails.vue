@@ -21,7 +21,11 @@ defineProps<{
       "
     ></fav-star>
   </h2>
-  <p><strong>ID:</strong> {{ team.id }}</p>
+  <hr />
+  <p>
+    <strong>ID: </strong>
+    <status-badge :label="team.id" />
+  </p>
   <p><strong>País:</strong> {{ team.country }}</p>
   <p><strong>Fundado:</strong> {{ team.formed }}</p>
   <p><strong>Descripción:</strong> {{ team.description }}</p>

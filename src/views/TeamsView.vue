@@ -14,9 +14,8 @@ const { teams, teamsError, isLoading } = useTeams()
   <ul v-else-if="teams.length">
     <li v-for="team in teams" :key="team.id">
       <RouterLink :to="{ name: 'TeamDetails', params: { teamId: team.id } }">
-        {{ team.name }}
+        {{ team.name }} ({{ team.country }})
       </RouterLink>
-      ({{ team.id }})
     </li>
   </ul>
   <p v-else>Sin datos disponibles</p>
