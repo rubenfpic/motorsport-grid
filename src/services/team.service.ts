@@ -4,11 +4,11 @@ import type { Team } from '@/types'
 type TeamApi = {
   idTeam: string
   strTeam: string
-  strAlternate: string | null
   intFormedYear: string | null
   strLocation: string | null
   strCountry: string | null
   strDescriptionEN: string | null
+  strLogo: string | null
   strBadge: string | null
   strEquipment: string | null
 }
@@ -37,11 +37,11 @@ export class TeamService {
     return teams.map((team) => ({
       id: Number(team.idTeam),
       name: team.strTeam,
-      altName: team.strAlternate || null,
       formed: team.intFormedYear ? Number(team.intFormedYear) : null,
       location: team.strLocation || null,
       country: team.strCountry || null,
       description: team.strDescriptionEN || null,
+      logo: team.strLogo || null,
       badge: team.strBadge || null,
       equipment: team.strEquipment || null,
     }))
@@ -70,11 +70,11 @@ export class TeamService {
     return {
       id: Number(teamData.idTeam),
       name: teamData.strTeam,
-      altName: teamData.strAlternate || null,
       formed: teamData.intFormedYear ? Number(teamData.intFormedYear) : null,
       location: teamData.strLocation || null,
       country: teamData.strCountry || null,
       description: teamData.strDescriptionEN || null,
+      logo: teamData.strLogo || null,
       badge: teamData.strBadge || null,
       equipment: teamData.strEquipment || null,
     }

@@ -13,9 +13,10 @@ const { teams, teamsError, isLoading } = useTeams()
   <p v-else-if="teamsError">{{ teamsError }}</p>
   <ul v-else-if="teams.length">
     <li v-for="team in teams" :key="team.id">
+      <img v-if="team.badge" :src="team.badge" alt="Badge" class="badge" width="36" />
       <RouterLink :to="{ name: 'TeamDetails', params: { teamId: team.id } }">
-        {{ team.name }} ({{ team.country }})
-      </RouterLink>
+        {{ team.name }} ({{ team.country }}) </RouterLink
+      ><br />
     </li>
   </ul>
   <p v-else>Sin datos disponibles</p>

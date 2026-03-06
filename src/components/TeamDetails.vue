@@ -11,6 +11,7 @@ defineProps<{
 
 <template>
   <h2>
+    <img v-if="team.badge" :src="team.badge" alt="Logo" width="72" />
     {{ team.name }}
     <fav-star
       :active="favorite.isFavoriteTeam(team.id) ? '' : null"
