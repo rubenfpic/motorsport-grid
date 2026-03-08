@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CurrentStandingsCard from '@/components/CurrentStandingsCard.vue'
 import FavoritesCard from '@/components/FavoritesCard.vue'
 import NextEventCard from '@/components/NextEventCard.vue'
 import PastEventCard from '@/components/PastEventCard.vue'
@@ -10,10 +11,13 @@ const { favoriteTeam, error, isLoading, isEmpty } = useFavoriteTeam()
 const {
   nextEvent,
   pastEvent,
+  currentStandings,
   nextEventError,
   pastEventError,
+  currentStandingsError,
   isNextEventLoading,
   isPastEventLoading,
+  isCurrentStandingsLoading,
 } = useDashboard()
 </script>
 
@@ -31,6 +35,11 @@ const {
     :pastEvent="pastEvent"
     :pastEventError="pastEventError"
     :isPastEventLoading="isPastEventLoading"
+  />
+  <CurrentStandingsCard
+    :currentStandings="currentStandings"
+    :currentStandingsError="currentStandingsError"
+    :isCurrentStandingsLoading="isCurrentStandingsLoading"
   />
   <div class="grid">
     <NextEventCard
