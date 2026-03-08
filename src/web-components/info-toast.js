@@ -5,6 +5,7 @@ class InfoToast extends LitElement {
     super()
     this.open = false
     this.message = ''
+    this.timer = null
   }
 
   static get properties() {
@@ -17,7 +18,9 @@ class InfoToast extends LitElement {
   static get styles() {
     return css`
       div {
-        background-color: beige;
+        background-color: rgb(255, 243, 205);
+        border-bottom: 0.25rem solid rgb(255, 230, 156);
+        border-radius: 0.5rem;
         color: black;
         display: flex;
         justify-content: space-between;
@@ -55,13 +58,31 @@ class InfoToast extends LitElement {
     `
   }
 
-  show() {
+  clearTimer() {
+    if (this.timer) {
+      clearTimeout(this.timer)
+      this.timer = null
+    }
+  }
+
+  show(message) {
+    this.clearTimer()
+    this.message = message
     this.open = true
+    this.timer = setTimeout(() => {
+      this.hide()
+    }, 3000)
   }
 
   hide() {
     this.open = false
-    this.dispatchEvent(new Event('close'))
+    this.message = ''
+    this.clearTimer()
+  }
+
+  disconnectedCallback() {
+    this.clearTimer()
+    super.disconnectedCallback()
   }
 
   render() {

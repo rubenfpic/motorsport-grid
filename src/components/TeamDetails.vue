@@ -8,23 +8,18 @@ defineProps<{
 }>()
 
 const favorite = useFavoriteStore()
-const isToastOpen = ref(false)
-const toastMessage = ref('')
+const toastRef = ref()
 
 const onFavoriteToggle = (teamId: number) => {
   const isFavorite = favorite.isFavoriteTeam(teamId)
 
   if (isFavorite) {
     favorite.clearFavoriteTeam()
-    toastMessage.value = 'Equipo eliminado de favoritos'
-    isToastOpen.value = false
+    toastRef.value.show('Equipo eliminado de favoritos')
   } else {
     favorite.setFavoriteTeam(teamId)
-    toastMessage.value = 'Equipo añadido a favoritos'
-    isToastOpen.value = true
+    toastRef.value.show('Equipo añadido a favoritos')
   }
-
-  isToastOpen.value = true
 }
 </script>
 
@@ -37,7 +32,7 @@ const onFavoriteToggle = (teamId: number) => {
       @toggle="onFavoriteToggle(team.id)"
     ></fav-star>
   </h2>
-  <info-toast :open="isToastOpen" :message="toastMessage" @close="isToastOpen = false" />
+  <info-toast ref="toastRef" />
   <hr />
   <p>
     <strong>ID: </strong>
