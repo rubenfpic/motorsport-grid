@@ -1,0 +1,53 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto;
+  gap: 16px 16px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'last-race last-race next-race'
+    'standings standings standings'
+    'seasons favorite favorite'
+    'teams teams teams';
+}
+
+@media (max-width: 767px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'last-race'
+      'next-race'
+      'standings'
+      'favorite'
+      'seasons'
+      'teams';
+  }
+}
+
+.dashboard > * > article {
+  height: 100%;
+}
+
+.dashboard__last-race {
+  grid-area: last-race;
+}
+
+.dashboard__next-race {
+  grid-area: next-race;
+}
+
+.dashboard__standings {
+  grid-area: standings;
+}
+
+.dashboard__seasons {
+  grid-area: seasons;
+}
+
+.dashboard__favorite {
+  grid-area: favorite;
+}
+
+.dashboard__teams {
+  grid-area: teams;
+}

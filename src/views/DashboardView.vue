@@ -23,30 +23,42 @@ const {
 
 <template>
   <h2>Dashboard</h2>
-  <FavoritesCard
-    :team-id="favoriteTeam?.id"
-    :team-name="favoriteTeam?.name ?? ''"
-    :is-loading="isLoading"
-    :error="error"
-    :is-empty="isEmpty"
-  />
-  <TeamLinksCard />
-  <PastEventCard
-    :pastEvent="pastEvent"
-    :pastEventError="pastEventError"
-    :isPastEventLoading="isPastEventLoading"
-  />
-  <CurrentStandingsCard
-    :currentStandings="currentStandings"
-    :currentStandingsError="currentStandingsError"
-    :isCurrentStandingsLoading="isCurrentStandingsLoading"
-  />
-  <div class="grid">
-    <NextEventCard
-      :nextEvent="nextEvent"
-      :nextEventError="nextEventError"
-      :isNextEventLoading="isNextEventLoading"
-    />
-    <SeasonLinksCard />
+  <div class="dashboard">
+    <div class="dashboard__last-race">
+      <PastEventCard
+        :pastEvent="pastEvent"
+        :pastEventError="pastEventError"
+        :isPastEventLoading="isPastEventLoading"
+      />
+    </div>
+    <div class="dashboard__next-race">
+      <NextEventCard
+        :nextEvent="nextEvent"
+        :nextEventError="nextEventError"
+        :isNextEventLoading="isNextEventLoading"
+      />
+    </div>
+    <div class="dashboard__standings">
+      <CurrentStandingsCard
+        :currentStandings="currentStandings"
+        :currentStandingsError="currentStandingsError"
+        :isCurrentStandingsLoading="isCurrentStandingsLoading"
+      />
+    </div>
+    <div class="dashboard__favorite">
+      <FavoritesCard
+        :team-id="favoriteTeam?.id"
+        :team-name="favoriteTeam?.name ?? ''"
+        :is-loading="isLoading"
+        :error="error"
+        :is-empty="isEmpty"
+      />
+    </div>
+    <div class="dashboard__seasons">
+      <SeasonLinksCard />
+    </div>
+    <div class="dashboard__teams">
+      <TeamLinksCard />
+    </div>
   </div>
 </template>
