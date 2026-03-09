@@ -1,14 +1,13 @@
 .dashboard {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto;
   gap: 16px 16px;
   grid-auto-flow: row;
   grid-template-areas:
     'last-race last-race next-race'
     'standings standings standings'
-    'seasons favorite favorite'
-    'teams teams teams';
+    'seasons favorite favorite';
 }
 
 @media (max-width: 767px) {
@@ -19,8 +18,7 @@
       'next-race'
       'standings'
       'favorite'
-      'seasons'
-      'teams';
+      'seasons';
   }
 }
 
@@ -46,8 +44,4 @@
 
 .dashboard__favorite {
   grid-area: favorite;
-}
-
-.dashboard__teams {
-  grid-area: teams;
 }

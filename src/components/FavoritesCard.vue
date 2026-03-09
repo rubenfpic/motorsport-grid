@@ -39,6 +39,9 @@ defineProps({
         {{ teamName }}
       </RouterLink>
     </template>
-    <p v-else>No hay favorito</p>
+    <template v-else>
+      <p>No hay favorito</p>
+      <RouterLink :to="{ name: 'Teams' }">Ver equipos</RouterLink>
+    </template>
   </article>
 </template>

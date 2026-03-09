@@ -4,7 +4,6 @@ import FavoritesCard from '@/components/FavoritesCard.vue'
 import NextEventCard from '@/components/NextEventCard.vue'
 import PastEventCard from '@/components/PastEventCard.vue'
 import SeasonLinksCard from '@/components/SeasonLinksCard.vue'
-import TeamLinksCard from '@/components/TeamLinksCard.vue'
 import { useDashboard, useFavoriteTeam } from '@/composables'
 
 const { favoriteTeam, error, isLoading, isEmpty } = useFavoriteTeam()
@@ -56,9 +55,6 @@ const {
     </div>
     <div class="dashboard__seasons">
       <SeasonLinksCard />
-    </div>
-    <div class="dashboard__teams">
-      <TeamLinksCard />
     </div>
   </div>
 </template>
