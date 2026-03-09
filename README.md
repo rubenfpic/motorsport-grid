@@ -1,4 +1,4 @@
-# dtm-dashboard
+# motorsport-grid
 
 Aplicacion web para consultar informacion de la competicion DTM.
 
