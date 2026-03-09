@@ -23,7 +23,7 @@ export class TeamService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener los equipos`)
+      throw new Error(`HTTP error ${response.status} while fetching teams`)
     }
 
     const data = (await response.json()) as TeamsResponse
@@ -52,7 +52,7 @@ export class TeamService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener los detalles del equipo`)
+      throw new Error(`HTTP error ${response.status} while fetching team details`)
     }
 
     const data = (await response.json()) as TeamsResponse

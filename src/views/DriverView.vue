@@ -16,8 +16,8 @@ const { driverDetails, driverDetailsError, isLoading } = useDriverDetails(driver
     :driver-name="driverDetails?.name ?? String(route.params.driverId ?? '')"
   />
   <hr />
-  <p v-if="isLoading" aria-busy="true">Cargando detalles del piloto...</p>
+  <p v-if="isLoading" aria-busy="true">Loading driver details...</p>
   <p v-else-if="driverDetailsError">{{ driverDetailsError }}</p>
   <DriverDetails v-else-if="driverDetails" :driver-details="driverDetails" />
-  <p v-else>Datos no encontrados</p>
+  <p v-else>No data found</p>
 </template>

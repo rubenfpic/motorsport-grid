@@ -96,7 +96,7 @@ export class DashboardService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener la última carrera`)
+      throw new Error(`HTTP error ${response.status} while fetching last race`)
     }
 
     const data = (await response.json()) as DashboardResponse
@@ -109,7 +109,7 @@ export class DashboardService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener la próxima carrera`)
+      throw new Error(`HTTP error ${response.status} while fetching next race`)
     }
 
     const data = await response.json()

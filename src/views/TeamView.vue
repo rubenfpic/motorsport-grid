@@ -13,14 +13,14 @@ const { drivers, driversError, isDriversLoading } = useTeamDrivers(Number(route.
 <template>
   <BreadcrumbsNav :team-name="team?.name" />
   <hr />
-  <p v-if="isTeamLoading" aria-busy="true">Cargando equipo...</p>
+  <p v-if="isTeamLoading" aria-busy="true">Loading team...</p>
   <p v-else-if="teamError">{{ teamError }}</p>
   <TeamDetails v-else-if="team" :team="team" />
-  <p v-else>Sin datos disponibles</p>
+  <p v-else>No data available</p>
   <hr />
-  <h3>Pilotos</h3>
-  <p v-if="isDriversLoading" aria-busy="true">Cargando pilotos...</p>
+  <h3>Drivers</h3>
+  <p v-if="isDriversLoading" aria-busy="true">Loading drivers...</p>
   <p v-else-if="driversError">{{ driversError }}</p>
   <TeamDriversList v-else-if="drivers.length > 0" :drivers="drivers" />
-  <p v-else>No hay pilotos disponibles para este equipo.</p>
+  <p v-else>No drivers available for this team.</p>
 </template>

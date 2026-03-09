@@ -11,18 +11,18 @@ defineProps<{
 <template>
   <article>
     <header>
-      <h3>Clasificación actual</h3>
+      <h3>Current standings</h3>
     </header>
-    <p v-if="isCurrentStandingsLoading" aria-busy="true">Cargando...</p>
-    <p v-else-if="currentStandingsError">No se pudo cargar la clasificación actual.</p>
+    <p v-if="isCurrentStandingsLoading" aria-busy="true">Loading...</p>
+    <p v-else-if="currentStandingsError">Could not load the current standings.</p>
     <template v-else-if="currentStandings">
       <table>
         <thead>
           <tr>
             <th scope="col">Pos</th>
-            <th scope="col">Piloto</th>
-            <th scope="col">Equipo</th>
-            <th scope="col">Puntos</th>
+            <th scope="col">Driver</th>
+            <th scope="col">Team</th>
+            <th scope="col">Points</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +38,6 @@ defineProps<{
         </tbody>
       </table>
     </template>
-    <p v-else>Clasificación no disponible.</p>
+    <p v-else>Standings not available.</p>
   </article>
 </template>

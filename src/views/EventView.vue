@@ -13,8 +13,8 @@ const { eventDetails, eventDetailsError, isLoading } = useEventDetails(eventId)
 <template>
   <BreadcrumbsNav :event-name="eventDetails?.name" />
   <hr />
-  <p v-if="isLoading" aria-busy="true">Cargando detalles del evento...</p>
+  <p v-if="isLoading" aria-busy="true">Loading event details...</p>
   <p v-else-if="eventDetailsError">{{ eventDetailsError }}</p>
   <EventDetails v-else-if="eventDetails" :event-details="eventDetails" />
-  <p v-else>Datos no encontrados</p>
+  <p v-else>No data found</p>
 </template>

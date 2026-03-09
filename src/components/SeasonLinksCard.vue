@@ -5,7 +5,7 @@ import { AVAILABLE_SEASONS } from '@/constants/api'
 <template>
   <article>
     <header>
-      <h3>Temporadas</h3>
+      <h3>Seasons</h3>
     </header>
     <ul>
       <li v-for="season in AVAILABLE_SEASONS" :key="season">

@@ -24,7 +24,7 @@ export default class SeasonService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener la última carrera`)
+      throw new Error(`HTTP error ${response.status} while fetching last race`)
     }
 
     const data = (await response.json()) as SeasonEventsResponse
@@ -36,7 +36,7 @@ export default class SeasonService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener los eventos de la temporada`)
+      throw new Error(`HTTP error ${response.status} while fetching season events`)
     }
 
     // Convertimos el JSON al tipo esperado para evitar trabajar con any.

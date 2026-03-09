@@ -8,8 +8,8 @@ const { teams, teamsError, isLoading } = useTeams()
 <template>
   <BreadcrumbsNav />
   <hr />
-  <h2>Equipos</h2>
-  <p v-if="isLoading" aria-busy="true">Cargando equipos...</p>
+  <h2>Teams</h2>
+  <p v-if="isLoading" aria-busy="true">Loading teams...</p>
   <p v-else-if="teamsError">{{ teamsError }}</p>
   <ul v-else-if="teams.length">
     <li v-for="team in teams" :key="team.id">
@@ -19,5 +19,5 @@ const { teams, teamsError, isLoading } = useTeams()
       ><br />
     </li>
   </ul>
-  <p v-else>Sin datos disponibles</p>
+  <p v-else>No data available</p>
 </template>

@@ -15,8 +15,8 @@ export function useDriverDetails(driverId: number) {
     try {
       driverDetails.value = await driverService.getDriverById(driverId)
     } catch (error) {
-      console.error('Error al cargar la información: ', error)
-      driverDetailsError.value = 'No se ha podido cargar la información del piloto'
+      console.error('Error loading data: ', error)
+      driverDetailsError.value = 'Could not load driver details'
     } finally {
       isLoading.value = false
     }

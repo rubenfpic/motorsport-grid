@@ -25,7 +25,7 @@ export default class EventService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener el evento`)
+      throw new Error(`HTTP error ${response.status} while fetching event`)
     }
 
     const data = (await response.json()) as EventDetailsResponse

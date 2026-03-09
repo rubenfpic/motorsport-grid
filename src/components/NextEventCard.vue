@@ -11,18 +11,18 @@ defineProps<{
 <template>
   <article>
     <header>
-      <h3>Próxima carrera</h3>
+      <h3>Next race</h3>
     </header>
-    <p v-if="isNextEventLoading" aria-busy="true">Cargando...</p>
-    <p v-else-if="nextEventError">No se pudo cargar la próxima carrera.</p>
+    <p v-if="isNextEventLoading" aria-busy="true">Loading...</p>
+    <p v-else-if="nextEventError">Could not load the next race.</p>
     <template v-else-if="nextEvent">
       <p>{{ nextEvent.name }}</p>
       <ul>
-        <li>Fecha: {{ nextEvent.date }}</li>
-        <li>Circuito: {{ nextEvent.venue }}</li>
-        <li>Ubicación: {{ nextEvent.city }} ({{ nextEvent.country }})</li>
+        <li>Date: {{ nextEvent.date }}</li>
+        <li>Circuit: {{ nextEvent.venue }}</li>
+        <li>Location: {{ nextEvent.city }} ({{ nextEvent.country }})</li>
       </ul>
     </template>
-    <p v-else>Datos no encontrados</p>
+    <p v-else>No data found</p>
   </article>
 </template>

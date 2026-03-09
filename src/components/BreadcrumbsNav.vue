@@ -52,10 +52,10 @@ defineProps({
       </template>
 
       <!-- TEAMS -->
-      <li v-if="$route.name === 'Teams'" aria-current="page">Equipos</li>
+      <li v-if="$route.name === 'Teams'" aria-current="page">Teams</li>
       <template v-if="teamName">
         <li>
-          <RouterLink :to="{ name: 'Teams' }">Equipos</RouterLink>
+          <RouterLink :to="{ name: 'Teams' }">Teams</RouterLink>
         </li>
         <li v-if="teamName && !driverName" aria-current="page">
           {{ teamName }}

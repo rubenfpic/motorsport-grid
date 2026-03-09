@@ -7,9 +7,9 @@ const { teams, teamsError, isLoading } = useTeams()
 <template>
   <article>
     <header>
-      <h3>Equipos</h3>
+      <h3>Teams</h3>
     </header>
-    <p v-if="isLoading" aria-busy="true">Cargando equipos...</p>
+    <p v-if="isLoading" aria-busy="true">Loading teams...</p>
     <p v-else-if="teamsError">{{ teamsError }}</p>
     <ul v-else-if="teams.length">
       <li v-for="team in teams" :key="team.id">
@@ -18,7 +18,7 @@ const { teams, teamsError, isLoading } = useTeams()
         </RouterLink>
       </li>
     </ul>
-    <p v-else>Sin datos disponibles</p>
-    <RouterLink :to="{ name: 'Teams' }">Ver listado detallado</RouterLink>
+    <p v-else>No data available</p>
+    <RouterLink :to="{ name: 'Teams' }">View detailed list</RouterLink>
   </article>
 </template>

@@ -30,7 +30,7 @@ export class DriverService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener los pilotos del equipo`)
+      throw new Error(`HTTP error ${response.status} while fetching team drivers`)
     }
 
     const data = (await response.json()) as DriversResponse
@@ -57,7 +57,7 @@ export class DriverService {
     const response = await fetch(url)
 
     if (!response.ok) {
-      throw new Error(`Error HTTP ${response.status} al obtener datos del piloto`)
+      throw new Error(`HTTP error ${response.status} while fetching driver data`)
     }
 
     const data = (await response.json()) as DriverDetailsResponse

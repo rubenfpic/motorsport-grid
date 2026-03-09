@@ -25,8 +25,8 @@ export function useDashboard() {
     try {
       nextEvent.value = await dtmService.getNextEvent()
     } catch (error) {
-      console.error('Error al obtener la próxima carrera:', error)
-      nextEventError.value = 'No se pudo cargar la próxima carrera.'
+      console.error('Error fetching next race:', error)
+      nextEventError.value = 'Could not load the next race.'
     } finally {
       isNextEventLoading.value = false
     }
@@ -34,8 +34,8 @@ export function useDashboard() {
     try {
       pastEvent.value = await dtmService.getPastEvent()
     } catch (error) {
-      console.error('Error al obtener la última carrera:', error)
-      pastEventError.value = 'No se pudo cargar la última carrera.'
+      console.error('Error fetching last race:', error)
+      pastEventError.value = 'Could not load the last race.'
     } finally {
       isPastEventLoading.value = false
     }
@@ -43,8 +43,8 @@ export function useDashboard() {
     try {
       currentStandings.value = await dtmService.getCurrentStandings()
     } catch (error) {
-      console.error('Error al obtener la clasificación actual:', error)
-      currentStandingsError.value = 'No se pudo cargar la clasificación actual.'
+      console.error('Error fetching current standings:', error)
+      currentStandingsError.value = 'Could not load current standings.'
     } finally {
       isCurrentStandingsLoading.value = false
     }

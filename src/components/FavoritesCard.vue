@@ -31,19 +31,19 @@ defineProps({
 <template>
   <article>
     <header>
-      <h3>Favoritos</h3>
+      <h3>Favorites</h3>
     </header>
-    <p v-if="isLoading">Cargando...</p>
+    <p v-if="isLoading">Loading...</p>
     <p v-else-if="error">{{ error }}</p>
     <template v-else-if="teamId">
-      <p>Equipo favorito:</p>
+      <p>Favorite team:</p>
       <RouterLink :to="{ name: 'TeamDetails', params: { teamId: teamId } }">
         {{ teamName }}
       </RouterLink>
     </template>
     <template v-else>
-      <p>No hay favorito</p>
-      <RouterLink :to="{ name: 'Teams' }">Ver equipos</RouterLink>
+      <p>No favorite selected</p>
+      <RouterLink :to="{ name: 'Teams' }">View teams</RouterLink>
     </template>
   </article>
 </template>

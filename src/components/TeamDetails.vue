@@ -15,10 +15,10 @@ const onFavoriteToggle = (teamId: number) => {
 
   if (isFavorite) {
     favorite.clearFavoriteTeam()
-    toastRef.value.show('Equipo eliminado de favoritos')
+    toastRef.value.show('Team removed from favorites')
   } else {
     favorite.setFavoriteTeam(teamId)
-    toastRef.value.show('Equipo añadido a favoritos')
+    toastRef.value.show('Team added to favorites')
   }
 }
 </script>
@@ -38,7 +38,7 @@ const onFavoriteToggle = (teamId: number) => {
     <strong>ID: </strong>
     <status-badge :label="team.id" />
   </p>
-  <p><strong>País:</strong> {{ team.country }}</p>
-  <p><strong>Fundado:</strong> {{ team.formed }}</p>
-  <p><strong>Descripción:</strong> {{ team.description }}</p>
+  <p><strong>Country:</strong> {{ team.country }}</p>
+  <p><strong>Founded:</strong> {{ team.formed }}</p>
+  <p><strong>Description:</strong> {{ team.description }}</p>
 </template>

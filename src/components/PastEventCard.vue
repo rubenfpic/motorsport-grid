@@ -11,22 +11,22 @@ defineProps<{
 <template>
   <article>
     <header>
-      <h3>Última carrera</h3>
+      <h3>Last race</h3>
     </header>
-    <p v-if="isPastEventLoading" aria-busy="true">Cargando...</p>
-    <p v-else-if="pastEventError">No se pudo cargar la última carrera.</p>
+    <p v-if="isPastEventLoading" aria-busy="true">Loading...</p>
+    <p v-else-if="pastEventError">Could not load the last race.</p>
     <template v-else-if="pastEvent">
       <div class="grid">
         <div>
           <p>{{ pastEvent.name }}</p>
           <ul>
-            <li>Fecha: {{ pastEvent.date }}</li>
-            <li>Circuito: {{ pastEvent.venue }}</li>
-            <li>Ubicación: {{ pastEvent.city }} ({{ pastEvent.country }})</li>
+            <li>Date: {{ pastEvent.date }}</li>
+            <li>Circuit: {{ pastEvent.venue }}</li>
+            <li>Location: {{ pastEvent.city }} ({{ pastEvent.country }})</li>
           </ul>
         </div>
         <div>
-          <p>Pódium:</p>
+          <p>Podium:</p>
           <ul>
             <li v-for="(participant, index) in pastEvent.podium" :key="index">
               {{ participant.position }}. {{ participant.driver }} ({{ participant.team }})
@@ -35,6 +35,6 @@ defineProps<{
         </div>
       </div>
     </template>
-    <p v-else>Datos no encontrados</p>
+    <p v-else>No data found</p>
   </article>
 </template>
