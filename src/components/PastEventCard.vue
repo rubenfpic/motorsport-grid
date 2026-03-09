@@ -34,6 +34,13 @@ defineProps<{
           </ul>
         </div>
       </div>
+      <RouterLink
+        :to="{
+          name: 'Event',
+          params: { seasonYear: String(pastEvent.season), eventId: pastEvent.id },
+        }"
+        >View event</RouterLink
+      >
     </template>
     <p v-else>No data found</p>
   </article>

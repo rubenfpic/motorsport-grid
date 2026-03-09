@@ -22,6 +22,13 @@ defineProps<{
         <li>Circuit: {{ nextEvent.venue }}</li>
         <li>Location: {{ nextEvent.city }} ({{ nextEvent.country }})</li>
       </ul>
+      <RouterLink
+        :to="{
+          name: 'Event',
+          params: { seasonYear: String(nextEvent.season), eventId: nextEvent.id },
+        }"
+        >View event</RouterLink
+      >
     </template>
     <p v-else>No data found</p>
   </article>

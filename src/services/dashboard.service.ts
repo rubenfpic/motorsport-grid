@@ -15,6 +15,7 @@ type DashboardEventApi = {
   strCity: string
   strCountry: string
   strTimestamp: string | null
+  strSeason: string | null
   strResult: string | null
 }
 
@@ -127,6 +128,7 @@ export class DashboardService {
       city: event.strCity,
       country: event.strCountry,
       date: event.strTimestamp ? event.strTimestamp.slice(0, 10) : null,
+      season: event.strSeason,
     }
   }
 
@@ -142,6 +144,7 @@ export class DashboardService {
       city: event.strCity,
       country: event.strCountry,
       date: event.strTimestamp ? event.strTimestamp.slice(0, 10) : null,
+      season: event.strSeason,
       podium: parseResult(event.strResult, 3),
     }
   }

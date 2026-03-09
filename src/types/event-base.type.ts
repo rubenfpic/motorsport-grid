@@ -5,4 +5,5 @@ export type EventBase = {
   city: string
   country: string
   date: string | null
+  season: string | null
 }
