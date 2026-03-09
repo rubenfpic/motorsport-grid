@@ -6,7 +6,9 @@ const { teams, teamsError, isLoading } = useTeams()
 
 <template>
   <article>
-    <header>Equipos</header>
+    <header>
+      <h3>Equipos</h3>
+    </header>
     <p v-if="isLoading" aria-busy="true">Cargando equipos...</p>
     <p v-else-if="teamsError">{{ teamsError }}</p>
     <ul v-else-if="teams.length">

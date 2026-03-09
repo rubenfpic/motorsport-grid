@@ -1,0 +1,11 @@
+article {
+  font-size: 0.875rem;
+}
+article header h3 {
+  font-size: 1.5rem;
+  line-height: 1rem;
+  padding: 0;
+  margin: 0.25rem 0;
+  letter-spacing: 0.125rem;
+  color: var(--pico-primary);
+}

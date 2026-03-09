@@ -30,7 +30,9 @@ defineProps({
 
 <template>
   <article>
-    <header>Favoritos</header>
+    <header>
+      <h3>Favoritos</h3>
+    </header>
     <p v-if="isLoading">Cargando...</p>
     <p v-else-if="error">{{ error }}</p>
     <template v-else-if="teamId">

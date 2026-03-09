@@ -10,7 +10,9 @@ defineProps<{
 
 <template>
   <article>
-    <header>Clasificación actual</header>
+    <header>
+      <h3>Clasificación actual</h3>
+    </header>
     <p v-if="isCurrentStandingsLoading" aria-busy="true">Cargando...</p>
     <p v-else-if="currentStandingsError">No se pudo cargar la clasificación actual.</p>
     <template v-else-if="currentStandings">

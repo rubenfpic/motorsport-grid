@@ -10,7 +10,9 @@ defineProps<{
 
 <template>
   <article>
-    <header>Próxima carrera</header>
+    <header>
+      <h3>Próxima carrera</h3>
+    </header>
     <p v-if="isNextEventLoading" aria-busy="true">Cargando...</p>
     <p v-else-if="nextEventError">No se pudo cargar la próxima carrera.</p>
     <template v-else-if="nextEvent">
