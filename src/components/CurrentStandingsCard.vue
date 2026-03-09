@@ -1,11 +1,21 @@
 <script setup lang="ts">
 import type { CurrentStandings } from '@/types'
+import { computed, ref } from 'vue'
 
-defineProps<{
+const props = defineProps<{
   currentStandings: CurrentStandings | null
   currentStandingsError: string | null
   isCurrentStandingsLoading: boolean
 }>()
+
+const showAll = ref(false)
+const MIN_VISIBLE = 5
+const showToggle = computed(() => (props.currentStandings?.entries.length ?? 0) > MIN_VISIBLE)
+const actualEntries = computed(() => {
+  if (!props.currentStandings) return []
+  if (!showAll.value) return props.currentStandings.entries.slice(0, MIN_VISIBLE)
+  return props.currentStandings.entries
+})
 </script>
 
 <template>
@@ -27,7 +37,7 @@ defineProps<{
         </thead>
         <tbody>
           <tr
-            v-for="entry in currentStandings.entries"
+            v-for="entry in actualEntries"
             :key="`${entry.position}-${entry.driver}-${entry.team}`"
           >
             <td>{{ entry.position }}</td>
@@ -37,6 +47,9 @@ defineProps<{
           </tr>
         </tbody>
       </table>
+      <button v-if="showToggle" @click="showAll = !showAll">
+        {{ showAll ? `See top ${MIN_VISIBLE}` : 'See all' }}
+      </button>
     </template>
     <p v-else>Standings not available.</p>
   </article>
