@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
+    "predeploy": "npm run build",
+    "deploy": "npx gh-pages -d dist",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
