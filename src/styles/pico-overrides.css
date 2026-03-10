@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --pico-font-family: 'Rajdhani', sans-serif;
+  --pico-font-family-sans-serif: 'Rajdhani', sans-serif;
+  --pico-font-family: var(--pico-font-family-sans-serif);
 }

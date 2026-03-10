@@ -1,3 +1,7 @@
+:root {
+  --app-font-family-display: 'Orbitron', var(--pico-font-family-sans-serif);
+}
+
 .skip-link {
   position: absolute;
   left: -9999px;
