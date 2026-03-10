@@ -1,12 +1,14 @@
 import { TeamService } from '@/services/team.service'
+import { useCompetitionStore } from '@/stores/useCompetitionStore'
 import type { Team } from '@/types'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 export function useTeamDetails(teamId: number) {
   const team = ref<Team | null>(null)
   const teamError = ref<string>('')
   const isLoading = ref(true)
   const teamService = new TeamService()
+  const competitionStore = useCompetitionStore()
 
   const loadTeamDetails = async () => {
     teamError.value = ''
@@ -22,9 +24,9 @@ export function useTeamDetails(teamId: number) {
     }
   }
 
-  onMounted(() => {
-    void loadTeamDetails()
-  })
+  onMounted(loadTeamDetails)
+
+  watch(() => competitionStore.competitionId, loadTeamDetails)
 
   return {
     team,

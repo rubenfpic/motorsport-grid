@@ -1,12 +1,14 @@
 import { DriverService } from '@/services/driver.service'
+import { useCompetitionStore } from '@/stores/useCompetitionStore'
 import type { Driver } from '@/types'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 export function useTeamDrivers(teamId: number) {
   const drivers = ref<Driver[]>([])
   const driversError = ref<string>('')
   const isDriversLoading = ref(true)
   const driverService = new DriverService()
+  const competitionStore = useCompetitionStore()
 
   const loadTeamDrivers = async () => {
     driversError.value = ''
@@ -22,9 +24,9 @@ export function useTeamDrivers(teamId: number) {
     }
   }
 
-  onMounted(() => {
-    void loadTeamDrivers()
-  })
+  onMounted(loadTeamDrivers)
+
+  watch(() => competitionStore.competitionId, loadTeamDrivers)
 
   return {
     drivers,
