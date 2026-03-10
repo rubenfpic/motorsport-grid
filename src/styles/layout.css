@@ -45,3 +45,7 @@
 .dashboard__favorite {
   grid-area: favorite;
 }
+
+header {
+  margin-top: 1rem;
+}

@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import TheBreadcrumbs from '@/components/TheBreadcrumbs.vue'
 import { useTeams } from '@/composables'
 
 const { teams, teamsError, isLoading } = useTeams()
 </script>
 
 <template>
-  <TheBreadcrumbs />
-  <hr />
   <h2>Teams</h2>
   <p v-if="isLoading" aria-busy="true">Loading teams...</p>
   <p v-else-if="teamsError">{{ teamsError }}</p>

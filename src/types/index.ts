@@ -1,3 +1,4 @@
+export type { Competition } from '@/types/competition.type'
 export type { CurrentStandings } from '@/types/current-standings.type'
 export type { Driver } from '@/types/driver.type'
 export type { EventBase } from '@/types/event-base.type'

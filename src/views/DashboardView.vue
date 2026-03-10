@@ -21,7 +21,7 @@ const {
 </script>
 
 <template>
-  <h2>Dashboard</h2>
+  <h2 class="visually-hidden">Dashboard</h2>
   <div class="dashboard">
     <div class="dashboard__last-race">
       <PastEventCard

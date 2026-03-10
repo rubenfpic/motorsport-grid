@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheBreadcrumbs from '@/components/TheBreadcrumbs.vue'
 import SeasonDetails from '@/components/SeasonDetails.vue'
 import { useSeasonEvents } from '@/composables'
 import { AVAILABLE_SEASONS } from '@/constants/api'
@@ -27,8 +26,6 @@ const nextSeason = computed<number | null>(() => {
 </script>
 
 <template>
-  <TheBreadcrumbs />
-  <hr />
   <h2>Season {{ route.params.seasonYear }}</h2>
   <span v-if="previousSeason !== null">
     <RouterLink :to="{ name: 'Season', params: { seasonYear: String(previousSeason) } }"

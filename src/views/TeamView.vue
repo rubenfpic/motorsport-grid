@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheBreadcrumbs from '@/components/TheBreadcrumbs.vue'
 import TeamDetails from '@/components/TeamDetails.vue'
 import TeamDriversList from '@/components/TeamDriversList.vue'
 import { useTeamDetails, useTeamDrivers } from '@/composables'
@@ -11,8 +10,6 @@ const { drivers, driversError, isDriversLoading } = useTeamDrivers(Number(route.
 </script>
 
 <template>
-  <TheBreadcrumbs :team-name="team?.name" />
-  <hr />
   <p v-if="isTeamLoading" aria-busy="true">Loading team...</p>
   <p v-else-if="teamError">{{ teamError }}</p>
   <TeamDetails v-else-if="team" :team="team" />
