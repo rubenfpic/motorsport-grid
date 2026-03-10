@@ -1,6 +1,7 @@
 import { DashboardService } from '@/services/dashboard.service'
+import { useCompetitionStore } from '@/stores/useCompetitionStore'
 import type { CurrentStandings, NextEvent, PastEvent } from '@/types'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 export function useDashboard() {
   const nextEvent = ref<NextEvent | null>(null)
@@ -13,6 +14,7 @@ export function useDashboard() {
   const isPastEventLoading = ref(true)
   const isCurrentStandingsLoading = ref(true)
   const dashboardService = new DashboardService()
+  const competitionStore = useCompetitionStore()
 
   const loadDashboard = async () => {
     nextEventError.value = null
@@ -51,6 +53,8 @@ export function useDashboard() {
   }
 
   onMounted(loadDashboard)
+
+  watch(() => competitionStore.competitionId, loadDashboard)
 
   return {
     nextEvent,

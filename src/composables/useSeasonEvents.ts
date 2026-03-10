@@ -1,4 +1,5 @@
 import SeasonService from '@/services/season.service'
+import { useCompetitionStore } from '@/stores/useCompetitionStore'
 import type { SeasonEvent } from '@/types'
 import { onMounted, ref, watch, type ComputedRef } from 'vue'
 
@@ -7,6 +8,7 @@ export function useSeasonEvents(seasonYear: ComputedRef<string>) {
   const seasonEventsError = ref<string>('')
   const seasonService = new SeasonService()
   const isLoading = ref(true)
+  const competitionStore = useCompetitionStore()
 
   const loadSeasonEvents = async () => {
     seasonEventsError.value = ''
@@ -25,7 +27,7 @@ export function useSeasonEvents(seasonYear: ComputedRef<string>) {
   onMounted(loadSeasonEvents)
 
   // Si cambia la temporada, volvemos a pedir los eventos sin recargar la página.
-  watch(() => seasonYear.value, loadSeasonEvents)
+  watch([() => seasonYear.value, () => competitionStore.competitionId], loadSeasonEvents)
 
   return {
     seasonEvents,
