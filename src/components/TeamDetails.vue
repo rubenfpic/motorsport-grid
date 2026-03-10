@@ -29,6 +29,7 @@ const onFavoriteToggle = (teamId: number) => {
     {{ team.name }}
     <fav-star
       :active="favorite.isFavoriteTeam(team.id) ? '' : null"
+      :item-name="team.name"
       @toggle="onFavoriteToggle(team.id)"
     ></fav-star>
   </h2>

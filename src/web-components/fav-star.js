@@ -46,8 +46,20 @@ class FavStar extends HTMLElement {
   // Renderiza la UI a partir del estado/atributos actuales.
   //
   render() {
-    const isActive = this.hasAttribute('active')
-    this.button.textContent = isActive ? '★' : '☆'
+    const active = this.hasAttribute('active')
+    // itemName puede venir o no venir
+    const itemName = this.getAttribute('item-name')?.trim() ?? ''
+    this.button.textContent = active ? '★' : '☆'
+    const actionLabel = itemName
+      ? active
+        ? `Remove ${itemName} from favorites`
+        : `Mark ${itemName} as favorite`
+      : active
+        ? 'Remove from favorites'
+        : 'Mark as favorite'
+    this.button.setAttribute('aria-label', actionLabel)
+    this.button.setAttribute('title', actionLabel)
+    this.button.setAttribute('aria-pressed', String(active))
   }
 
   // Ejecuta lógica al montar el componente en el DOM.
@@ -55,11 +67,11 @@ class FavStar extends HTMLElement {
   connectedCallback() {
     this.render()
   }
-  //
+
   // Declara los atributos observables para cambios reactivos.
   //
   static get observedAttributes() {
-    return ['active', 'disabled', 'label']
+    return ['active', 'item-name']
   }
 
   // Sincroniza la vista cuando cambian atributos observados.
