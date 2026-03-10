@@ -12,7 +12,7 @@ export function useDashboard() {
   const isNextEventLoading = ref(true)
   const isPastEventLoading = ref(true)
   const isCurrentStandingsLoading = ref(true)
-  const dtmService = new DashboardService()
+  const dashboardService = new DashboardService()
 
   const loadDashboard = async () => {
     nextEventError.value = null
@@ -23,7 +23,7 @@ export function useDashboard() {
     isCurrentStandingsLoading.value = true
 
     try {
-      nextEvent.value = await dtmService.getNextEvent()
+      nextEvent.value = await dashboardService.getNextEvent()
     } catch (error) {
       console.error('Error fetching next race:', error)
       nextEventError.value = 'Could not load the next race.'
@@ -32,7 +32,7 @@ export function useDashboard() {
     }
 
     try {
-      pastEvent.value = await dtmService.getPastEvent()
+      pastEvent.value = await dashboardService.getPastEvent()
     } catch (error) {
       console.error('Error fetching last race:', error)
       pastEventError.value = 'Could not load the last race.'
@@ -41,7 +41,7 @@ export function useDashboard() {
     }
 
     try {
-      currentStandings.value = await dtmService.getCurrentStandings()
+      currentStandings.value = await dashboardService.getCurrentStandings()
     } catch (error) {
       console.error('Error fetching current standings:', error)
       currentStandingsError.value = 'Could not load current standings.'
