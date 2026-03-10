@@ -5,6 +5,7 @@ import {
   NEXT_EVENT_ENDPOINT,
   PAST_EVENT_ENDPOINT,
 } from '@/constants/api'
+import { useCompetitionStore } from '@/stores/useCompetitionStore'
 import type { CurrentStandings, NextEvent, PastEvent, StandingsEntry } from '@/types'
 import { parseResult } from '@/utils/result.parser'
 
@@ -22,6 +23,8 @@ type DashboardEventApi = {
 type DashboardResponse = {
   events: DashboardEventApi[] | null
 }
+
+const getCompetitionId = () => useCompetitionStore().competitionId || LEAGUE_ID
 
 export class DashboardService {
   private cleanStandingsValue(value: string): string {
@@ -93,7 +96,7 @@ export class DashboardService {
   }
 
   private async getPastEventRaw(): Promise<DashboardEventApi | null> {
-    const url = `${BASE_URL}${API_KEY}/${PAST_EVENT_ENDPOINT}?id=${LEAGUE_ID}`
+    const url = `${BASE_URL}${API_KEY}/${PAST_EVENT_ENDPOINT}?id=${getCompetitionId()}`
     const response = await fetch(url)
 
     if (!response.ok) {
@@ -106,7 +109,7 @@ export class DashboardService {
   }
 
   async getNextEvent(): Promise<NextEvent | null> {
-    const url = `${BASE_URL}${API_KEY}/${NEXT_EVENT_ENDPOINT}?id=${LEAGUE_ID}`
+    const url = `${BASE_URL}${API_KEY}/${NEXT_EVENT_ENDPOINT}?id=${getCompetitionId()}`
     const response = await fetch(url)
 
     if (!response.ok) {

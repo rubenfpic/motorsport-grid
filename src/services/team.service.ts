@@ -1,4 +1,5 @@
 import { API_KEY, BASE_URL, LEAGUE_ID, SEARCH_ALL_TEAMS_ENDPOINT } from '@/constants/api'
+import { useCompetitionStore } from '@/stores/useCompetitionStore'
 import type { Team } from '@/types'
 
 type TeamApi = {
@@ -17,9 +18,11 @@ type TeamsResponse = {
   teams: TeamApi[] | null
 }
 
+const getCompetitionId = () => useCompetitionStore().competitionId || LEAGUE_ID
+
 export class TeamService {
   async getTeams(): Promise<Team[]> {
-    const url = `${BASE_URL}${API_KEY}/${SEARCH_ALL_TEAMS_ENDPOINT}?id=${LEAGUE_ID}`
+    const url = `${BASE_URL}${API_KEY}/${SEARCH_ALL_TEAMS_ENDPOINT}?id=${getCompetitionId()}`
     const response = await fetch(url)
 
     if (!response.ok) {
@@ -48,7 +51,7 @@ export class TeamService {
   }
 
   async getTeamById(teamId: number): Promise<Team | null> {
-    const url = `${BASE_URL}${API_KEY}/${SEARCH_ALL_TEAMS_ENDPOINT}?id=${LEAGUE_ID}`
+    const url = `${BASE_URL}${API_KEY}/${SEARCH_ALL_TEAMS_ENDPOINT}?id=${getCompetitionId()}`
     const response = await fetch(url)
 
     if (!response.ok) {

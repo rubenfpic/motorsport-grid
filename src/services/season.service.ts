@@ -1,4 +1,5 @@
 import { API_KEY, BASE_URL, LEAGUE_ID, PAST_EVENT_ENDPOINT, SEASON_ENDPOINT } from '@/constants/api'
+import { useCompetitionStore } from '@/stores/useCompetitionStore'
 import type { SeasonEvent } from '@/types'
 
 // Forma "cruda" de cada evento tal como llega desde la API.
@@ -17,10 +18,12 @@ type SeasonEventsResponse = {
   events: SeasonEventApi[] | null
 }
 
+const getCompetitionId = () => useCompetitionStore().competitionId || LEAGUE_ID
+
 export default class SeasonService {
   // Cogemos el último evento por si hay que añadirlo a los que devuelve la API.
   private async getPastEventRaw(): Promise<SeasonEventApi | null> {
-    const url = `${BASE_URL}${API_KEY}/${PAST_EVENT_ENDPOINT}?id=${LEAGUE_ID}`
+    const url = `${BASE_URL}${API_KEY}/${PAST_EVENT_ENDPOINT}?id=${getCompetitionId()}`
     const response = await fetch(url)
 
     if (!response.ok) {
@@ -32,7 +35,7 @@ export default class SeasonService {
   }
 
   async getSeasonEventsByYear(seasonYear: string): Promise<SeasonEvent[]> {
-    const url = `${BASE_URL}${API_KEY}/${SEASON_ENDPOINT}?id=${LEAGUE_ID}&s=${seasonYear}`
+    const url = `${BASE_URL}${API_KEY}/${SEASON_ENDPOINT}?id=${getCompetitionId()}&s=${seasonYear}`
     const response = await fetch(url)
 
     if (!response.ok) {
