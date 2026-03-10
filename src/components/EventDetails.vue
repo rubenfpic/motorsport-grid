@@ -38,7 +38,6 @@ defineProps<{
   <img
     v-if="eventDetails.poster"
     :src="eventDetails.poster"
-    :alt="`Poster image of ${eventDetails.name}`"
-    :title="`Poster of ${eventDetails.name}`"
+    :alt="`Official poster for ${eventDetails.name}`"
   />
 </template>

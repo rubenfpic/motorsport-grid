@@ -13,7 +13,13 @@ const { teams, teamsError, isLoading } = useTeams()
   <p v-else-if="teamsError">{{ teamsError }}</p>
   <ul v-else-if="teams.length">
     <li v-for="team in teams" :key="team.id">
-      <img v-if="team.badge" :src="team.badge" alt="Badge" class="badge" width="36" />
+      <img
+        v-if="team.badge"
+        :src="team.badge"
+        :alt="`Team badge of ${team.name}`"
+        class="badge"
+        width="36"
+      />
       <RouterLink :to="{ name: 'TeamDetails', params: { teamId: team.id } }">
         {{ team.name }} ({{ team.country }}) </RouterLink
       ><br />

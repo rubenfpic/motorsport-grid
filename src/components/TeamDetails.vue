@@ -25,7 +25,7 @@ const onFavoriteToggle = (teamId: number) => {
 
 <template>
   <h2>
-    <img v-if="team.badge" :src="team.badge" alt="Logo" width="72" />
+    <img v-if="team.badge" :src="team.badge" :alt="`Team logo of ${team.name}`" width="72" />
     {{ team.name }}
     <fav-star
       :active="favorite.isFavoriteTeam(team.id) ? '' : null"

@@ -18,8 +18,7 @@ defineProps<{
     <img
       v-if="driverDetails.photo"
       :src="driverDetails.photo"
-      :alt="`Poster image of ${driverDetails.name}`"
-      :title="`Poster of ${driverDetails.name}`"
+      :alt="`Portrait of ${driverDetails.name}`"
     />
   </div>
 </template>
