@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BreadcrumbsNav from '@/components/BreadcrumbsNav.vue'
+import TheBreadcrumbs from '@/components/TheBreadcrumbs.vue'
 import DriverDetails from '@/components/DriverDetails.vue'
 import { useDriverDetails } from '@/composables'
 import { useRoute } from 'vue-router'
@@ -10,7 +10,7 @@ const { driverDetails, driverDetailsError, isLoading } = useDriverDetails(driver
 </script>
 
 <template>
-  <BreadcrumbsNav
+  <TheBreadcrumbs
     :team-id="driverDetails?.teamId ?? undefined"
     :team-name="driverDetails?.team ?? ''"
     :driver-name="driverDetails?.name ?? String(route.params.driverId ?? '')"
