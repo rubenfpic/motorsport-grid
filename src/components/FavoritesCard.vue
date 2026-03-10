@@ -43,7 +43,7 @@ defineProps({
     </template>
     <template v-else>
       <p>No favorite selected</p>
-      <RouterLink :to="{ name: 'Teams' }">View teams</RouterLink>
+      <RouterLink :to="{ name: 'Teams' }">Browse teams</RouterLink>
     </template>
   </article>
 </template>
