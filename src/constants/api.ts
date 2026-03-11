@@ -1,7 +1,7 @@
 export const BASE_URL = 'https://www.thesportsdb.com/api/v1/json/'
 export const API_KEY = '123'
 
-export const AVAILABLE_LEAGUES = ['4438', '4409']
+export const AVAILABLE_LEAGUES = ['4438']
 export const LEAGUE_ID = AVAILABLE_LEAGUES[0]!
 export const AVAILABLE_SEASONS = ['2025', '2026']
 

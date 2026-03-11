@@ -16,19 +16,21 @@ article h4 {
 
 .dock {
   display: inline-flex;
-  gap: 0.25rem;
-  border-bottom: 1px solid var(--pico-muted-color);
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
 }
 .dock__item {
+  border: 1.5rem solid var(--pico-color-primary);
   margin: 0;
-  border: 0;
   border-bottom: 2px solid transparent;
   border-radius: 0;
   padding: 0.5rem 0.75rem;
   background: transparent;
   color: var(--pico-muted-color);
 }
-.dock-item.is-active {
+.dock__item.is-active {
+  /* border: 4px dashed red;
   border-bottom-color: var(--pico-primary);
-  color: var(--pico-color);
+  color: var(--pico-primary-color); */
 }
