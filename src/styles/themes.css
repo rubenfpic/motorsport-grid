@@ -34,3 +34,27 @@
   --pico-primary-focus: color-mix(in srgb, var(--pico-primary) 40%, transparent);
   --pico-primary-inverse: #000;
 }
+:root[data-theme='dark'][data-competition='4372'] {
+  --pico-primary: var(--pico-color-blue-650);
+  --pico-primary-background: var(--pico-color-blue-750);
+  --pico-primary-border: var(--pico-primary-background);
+  --pico-primary-underline: color-mix(in srgb, var(--pico-primary) 45%, transparent);
+  --pico-primary-hover: var(--pico-color-blue-600);
+  --pico-primary-hover-background: var(--pico-color-blue-700);
+  --pico-primary-hover-border: var(--pico-primary-hover-background);
+  --pico-primary-hover-underline: var(--pico-primary-hover);
+  --pico-primary-focus: color-mix(in srgb, var(--pico-primary) 40%, transparent);
+  --pico-primary-inverse: #000;
+}
+:root[data-theme='dark'][data-competition='4412'] {
+  --pico-primary: var(--pico-color-red-550);
+  --pico-primary-background: var(--pico-color-red-650);
+  --pico-primary-border: var(--pico-primary-background);
+  --pico-primary-underline: color-mix(in srgb, var(--pico-primary) 45%, transparent);
+  --pico-primary-hover: var(--pico-color-red-500);
+  --pico-primary-hover-background: var(--pico-color-red-600);
+  --pico-primary-hover-border: var(--pico-primary-hover-background);
+  --pico-primary-hover-underline: var(--pico-primary-hover);
+  --pico-primary-focus: color-mix(in srgb, var(--pico-primary) 40%, transparent);
+  --pico-primary-inverse: #000;
+}

@@ -1,6 +1,6 @@
 # Motorsport Grid
 
-Aplicación web para consultar información de competiciones de motorsport (actualmente centrada en DTM).
+Aplicación web para consultar información de competiciones de motorsport.
 
 La app centraliza datos clave como próximas carreras, eventos por temporada, clasificación y detalles de equipos y pilotos.
 
