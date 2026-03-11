@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
+import { useCompetitionStore } from './useCompetitionStore'
 
-const LS_FAVORITE_TEAM_KEY = 'favoriteTeamId'
+const getFavoriteTeamKey = (competitionId: string) => `favoriteTeamId:${competitionId}`
 
 export const useFavoriteStore = defineStore('favorite', {
   state: (): {
@@ -8,30 +9,44 @@ export const useFavoriteStore = defineStore('favorite', {
   } => ({
     favoriteTeamId: null,
   }),
+
   getters: {
     isFavoriteTeam: (state) => (teamId: number) => state.favoriteTeamId === teamId,
   },
+
   actions: {
     setFavoriteTeam(teamId: number) {
+      const competitionId = useCompetitionStore().competitionId
+      const storageKey = getFavoriteTeamKey(competitionId)
+
       this.favoriteTeamId = teamId
-      localStorage.setItem(LS_FAVORITE_TEAM_KEY, String(teamId))
+      localStorage.setItem(storageKey, String(teamId))
     },
+
     clearFavoriteTeam() {
+      const competitionId = useCompetitionStore().competitionId
+      const storageKey = getFavoriteTeamKey(competitionId)
+
       this.favoriteTeamId = null
-      localStorage.removeItem(LS_FAVORITE_TEAM_KEY)
+      localStorage.removeItem(storageKey)
     },
+
     hydrateFavoriteTeam() {
-      const stored = localStorage.getItem(LS_FAVORITE_TEAM_KEY)
-      if (stored === null) {
+      const competitionId = useCompetitionStore().competitionId
+      const storageKey = getFavoriteTeamKey(competitionId)
+
+      const storedFavoriteTeam = localStorage.getItem(storageKey)
+
+      if (storedFavoriteTeam === null) return
+
+      const parsed = Number(storedFavoriteTeam)
+
+      if (!Number.isInteger(parsed) || parsed <= 0) {
+        this.clearFavoriteTeam()
         return
-      } else {
-        const parsed = Number(stored)
-        if (!Number.isInteger(parsed) || parsed <= 0) {
-          this.clearFavoriteTeam()
-        } else {
-          this.setFavoriteTeam(parsed)
-        }
       }
+
+      this.setFavoriteTeam(parsed)
     },
   },
 })

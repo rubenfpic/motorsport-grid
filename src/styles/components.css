@@ -18,19 +18,28 @@ article h4 {
   display: inline-flex;
   justify-content: center;
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
+  gap: 2rem;
 }
-.dock__item {
-  border: 1.5rem solid var(--pico-color-primary);
+.dock .dock__item {
+  border: 0;
   margin: 0;
-  border-bottom: 2px solid transparent;
+  padding: 1rem;
+  background: var(--pico-card-background-color);
   border-radius: 0;
-  padding: 0.5rem 0.75rem;
-  background: transparent;
-  color: var(--pico-muted-color);
+  position: relative;
 }
-.dock__item.is-active {
-  /* border: 4px dashed red;
-  border-bottom-color: var(--pico-primary);
-  color: var(--pico-primary-color); */
+.dock .dock__item.is-active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-bottom: 0.25rem solid var(--pico-primary);
+}
+.dock .dock__badge {
+  display: block;
+  width: 4rem;
+  height: 4rem;
 }

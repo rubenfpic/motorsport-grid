@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import TheHeader from './components/TheHeader.vue'
+import { onMounted, watch } from 'vue'
+import { useCompetitionStore } from './stores/useCompetitionStore'
+
+const competitionStore = useCompetitionStore()
+
+const applyCompetitionTheme = () => {
+  document.documentElement.dataset.competition = competitionStore.competitionId
+}
+
+onMounted(applyCompetitionTheme)
+watch(() => competitionStore.competitionId, applyCompetitionTheme)
 </script>
 
 <template>

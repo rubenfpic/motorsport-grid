@@ -3,6 +3,7 @@ import { CompetitionService } from '@/services/competition.service'
 import { defineStore } from 'pinia'
 
 const competitionService = new CompetitionService()
+const LS_COMPETITION_KEY = 'competitionId'
 
 export const useCompetitionStore = defineStore('competition', {
   state: () => ({
@@ -10,6 +11,7 @@ export const useCompetitionStore = defineStore('competition', {
     competitionName: '',
     availableCompetitionsMeta: {} as Record<string, { name: string; badge: string | null }>,
   }),
+
   actions: {
     async loadCompetitionMeta() {
       try {
@@ -49,7 +51,21 @@ export const useCompetitionStore = defineStore('competition', {
     async setCompetitionId(competitionId: string) {
       if (!AVAILABLE_LEAGUES.includes(competitionId)) return
       this.competitionId = competitionId
+      localStorage.setItem(LS_COMPETITION_KEY, competitionId)
       await this.loadCompetitionMeta()
+    },
+
+    hydrateCompetition() {
+      const storedCompetition = localStorage.getItem(LS_COMPETITION_KEY)
+
+      if (storedCompetition === null) return
+
+      if (!AVAILABLE_LEAGUES.includes(storedCompetition)) {
+        localStorage.removeItem(LS_COMPETITION_KEY)
+        return
+      }
+
+      this.competitionId = storedCompetition
     },
   },
 })

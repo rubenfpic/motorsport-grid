@@ -11,7 +11,6 @@ const competitionName = computed(() => competitionStore.competitionName)
 const isDashboard = computed(() => route.name === 'Dashboard')
 const availableCompetitions = computed(() => competitionStore.availableCompetitionsMeta)
 
-console.log('availableCompetitions', availableCompetitions)
 onMounted(() => {
   competitionStore.loadAvailableCompetitionsMeta()
   if (!competitionStore.competitionName) {
@@ -29,9 +28,16 @@ onMounted(() => {
         type="button"
         class="dock__item"
         :class="{ 'is-active': leagueId === competitionStore.competitionId }"
+        :aria-label="availableCompetitions[leagueId]?.name ?? `Competition ${leagueId}`"
         @click="competitionStore.setCompetitionId(leagueId)"
       >
-        {{ availableCompetitions[leagueId]?.name }}
+        <img
+          v-if="availableCompetitions[leagueId]?.badge"
+          :src="availableCompetitions[leagueId].badge"
+          :alt="availableCompetitions[leagueId].name"
+          :title="`Show ${availableCompetitions[leagueId].name}`"
+          class="dock__badge"
+        />
       </button>
     </nav>
     <TheBreadcrumbs v-if="!isDashboard" :competition-name="competitionName" />

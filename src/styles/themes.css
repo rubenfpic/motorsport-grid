@@ -1,25 +1,34 @@
-/* LIGHT */
-:root[data-theme='light'][data-competition='4438'] {
-  --pico-primary: var(--pico-color-amber-200);
-  --pico-primary-background: var(--pico-color-amber-300);
+:root[data-theme='dark'] {
+  --pico-primary: var(--pico-color-zinc-450);
+  --pico-primary-background: var(--pico-color-zinc-550);
   --pico-primary-border: var(--pico-primary-background);
   --pico-primary-underline: color-mix(in srgb, var(--pico-primary) 45%, transparent);
-  --pico-primary-hover: var(--pico-color-amber-300);
-  --pico-primary-hover-background: var(--pico-color-amber-350);
+  --pico-primary-hover: var(--pico-color-zinc-400);
+  --pico-primary-hover-background: var(--pico-color-zinc-500);
   --pico-primary-hover-border: var(--pico-primary-hover-background);
   --pico-primary-hover-underline: var(--pico-primary-hover);
-  --pico-primary-focus: color-mix(in srgb, var(--pico-primary) 35%, transparent);
+  --pico-primary-focus: color-mix(in srgb, var(--pico-primary) 40%, transparent);
   --pico-primary-inverse: #000;
 }
-
-/* DARK */
 :root[data-theme='dark'][data-competition='4438'] {
   --pico-primary: var(--pico-color-amber-200);
-  --pico-primary-background: var(--pico-color-amber-500);
+  --pico-primary-background: var(--pico-color-amber-350);
   --pico-primary-border: var(--pico-primary-background);
   --pico-primary-underline: color-mix(in srgb, var(--pico-primary) 45%, transparent);
   --pico-primary-hover: var(--pico-color-amber-150);
-  --pico-primary-hover-background: var(--pico-color-amber-450);
+  --pico-primary-hover-background: var(--pico-color-amber-300);
+  --pico-primary-hover-border: var(--pico-primary-hover-background);
+  --pico-primary-hover-underline: var(--pico-primary-hover);
+  --pico-primary-focus: color-mix(in srgb, var(--pico-primary) 40%, transparent);
+  --pico-primary-inverse: #000;
+}
+:root[data-theme='dark'][data-competition='4409'] {
+  --pico-primary: var(--pico-color-orange-450);
+  --pico-primary-background: var(--pico-color-orange-550);
+  --pico-primary-border: var(--pico-primary-background);
+  --pico-primary-underline: color-mix(in srgb, var(--pico-primary) 45%, transparent);
+  --pico-primary-hover: var(--pico-color-orange-400);
+  --pico-primary-hover-background: var(--pico-color-orange-500);
   --pico-primary-hover-border: var(--pico-primary-hover-background);
   --pico-primary-hover-underline: var(--pico-primary-hover);
   --pico-primary-focus: color-mix(in srgb, var(--pico-primary) 40%, transparent);
