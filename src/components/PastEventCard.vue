@@ -18,7 +18,7 @@ defineProps<{
     <template v-else-if="pastEvent">
       <div class="grid">
         <div>
-          <p>{{ pastEvent.name }}</p>
+          <h4>{{ pastEvent.name }}</h4>
           <ul>
             <li>Date: {{ pastEvent.date }}</li>
             <li>Circuit: {{ pastEvent.venue }}</li>
@@ -26,7 +26,7 @@ defineProps<{
           </ul>
         </div>
         <div>
-          <p>Podium:</p>
+          <h4>Podium</h4>
           <ul>
             <li v-for="(participant, index) in pastEvent.podium" :key="index">
               {{ participant.position }}. {{ participant.driver }} ({{ participant.team }})

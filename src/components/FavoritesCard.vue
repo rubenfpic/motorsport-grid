@@ -36,7 +36,7 @@ defineProps({
     <p v-if="isLoading">Loading...</p>
     <p v-else-if="error">{{ error }}</p>
     <template v-else-if="teamId">
-      <p>Favorite team:</p>
+      <h4>Favorite team:</h4>
       <RouterLink :to="{ name: 'TeamDetails', params: { teamId: teamId } }">
         {{ teamName }}
       </RouterLink>

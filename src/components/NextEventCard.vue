@@ -16,7 +16,7 @@ defineProps<{
     <p v-if="isNextEventLoading" aria-busy="true">Loading...</p>
     <p v-else-if="nextEventError">Could not load the next race.</p>
     <template v-else-if="nextEvent">
-      <p>{{ nextEvent.name }}</p>
+      <h4>{{ nextEvent.name }}</h4>
       <ul>
         <li>Date: {{ nextEvent.date }}</li>
         <li>Circuit: {{ nextEvent.venue }}</li>

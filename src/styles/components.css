@@ -10,6 +10,9 @@ article header h3 {
   text-transform: uppercase;
   color: var(--pico-primary);
 }
+article h4 {
+  font-size: 1.125rem;
+}
 
 .dock {
   display: inline-flex;
