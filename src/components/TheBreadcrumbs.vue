@@ -55,11 +55,14 @@ const breadcrumbTeamId = computed(() => props.teamId ?? Number(routeTeamId.value
         {{ routeSeasonYear }}
       </li>
       <template v-if="routeSeasonYear && routeEventId">
+        <!-- SEASON -->
         <li>
           <RouterLink :to="{ name: 'Season', params: { seasonYear: routeSeasonYear } }">{{
             routeSeasonYear
           }}</RouterLink>
         </li>
+
+        <!-- EVENT -->
         <li aria-current="page">
           {{ eventName || routeEventId }}
         </li>
@@ -68,13 +71,18 @@ const breadcrumbTeamId = computed(() => props.teamId ?? Number(routeTeamId.value
       <!-- TEAMS -->
       <li v-if="routeName === 'Teams'" aria-current="page">Teams</li>
       <template v-if="teamName || routeTeamId">
+        <!-- TEAMS -->
         <li>
           <RouterLink :to="{ name: 'Teams' }">Teams</RouterLink>
         </li>
+
+        <!-- TEAM -->
         <li v-if="(teamName || routeTeamId) && !driverName && !routeDriverId" aria-current="page">
           {{ teamName || routeTeamId }}
         </li>
+
         <template v-if="driverName || routeDriverId">
+          <!-- TEAM -->
           <li>
             <RouterLink
               v-if="breadcrumbTeamId"
@@ -84,6 +92,8 @@ const breadcrumbTeamId = computed(() => props.teamId ?? Number(routeTeamId.value
             </RouterLink>
             <template v-else>{{ teamName || routeTeamId }}</template>
           </li>
+
+          <!-- DRIVER -->
           <li aria-current="page">
             {{ driverName || routeDriverId }}
           </li>
