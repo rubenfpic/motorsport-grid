@@ -87,7 +87,7 @@ class InfoToast extends LitElement {
 
   render() {
     return html`
-      <div>
+      <div role="status" aria-atomic="true">
         <p>${this.message}</p>
         <button @click=${() => this.hide()}>🅇</button>
       </div>
