@@ -89,7 +89,7 @@ class InfoToast extends LitElement {
     return html`
       <div role="status" aria-atomic="true">
         <p>${this.message}</p>
-        <button @click=${() => this.hide()}>🅇</button>
+        <button @click=${() => this.hide()} aria-label="Close notification">🅇</button>
       </div>
     `
   }
