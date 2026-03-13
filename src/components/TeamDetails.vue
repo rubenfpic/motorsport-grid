@@ -33,7 +33,7 @@ const onFavoriteToggle = (teamId: number) => {
       @toggle="onFavoriteToggle(team.id)"
     ></fav-star>
   </h2>
-  <info-toast ref="toastRef" .delay="5000" />
+  <info-toast ref="toastRef" .delay="5000" variant="info" />
   <hr />
   <p>
     <strong>ID: </strong>

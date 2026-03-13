@@ -7,6 +7,7 @@ class InfoToast extends LitElement {
     this.message = ''
     this.timer = null
     this.delay = 3000
+    this.variant = ''
   }
 
   static get properties() {
@@ -14,6 +15,7 @@ class InfoToast extends LitElement {
       open: { type: Boolean, reflect: true },
       message: { type: String },
       delay: { type: Number },
+      variant: { type: String, reflect: true },
     }
   }
 
@@ -65,6 +67,42 @@ class InfoToast extends LitElement {
       }
       :host(:not([open])) div {
         transform: translateX(-50%) translateY(-150%);
+      }
+      :host([variant='success']) {
+        div {
+          background: lightgreen;
+          border-color: green;
+        }
+        button {
+          outline-color: green;
+        }
+      }
+      :host([variant='error']) {
+        div {
+          background: mistyrose;
+          border-color: red;
+        }
+        button {
+          outline-color: red;
+        }
+      }
+      :host([variant='info']) {
+        div {
+          background: lemonchiffon;
+          border-color: goldenrod;
+        }
+        button {
+          outline-color: goldenrod;
+        }
+      }
+      :host([variant='warning']) {
+        div {
+          background: moccasin;
+          border-color: darkorange;
+        }
+        button {
+          outline-color: darkorange;
+        }
       }
     `
   }
