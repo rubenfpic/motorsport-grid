@@ -79,7 +79,7 @@ class InfoToast extends LitElement {
     this.open = true
     this.timer = setTimeout(() => {
       this.hide()
-    }, 10000)
+    }, 5000)
   }
 
   hide() {
