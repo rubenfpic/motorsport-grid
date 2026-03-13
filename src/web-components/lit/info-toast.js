@@ -18,10 +18,10 @@ class InfoToast extends LitElement {
   static get styles() {
     return css`
       div {
-        background-color: rgb(255, 243, 205);
-        border-bottom: 0.25rem solid rgb(255, 230, 156);
-        border-radius: 0.25rem;
-        color: black;
+        background: var(--info-toast-background, gainsboro);
+        border-bottom: 0.25rem solid var(--info-toast-highlight-color, grey);
+        border-radius: var(--info-toast-border-radius, 0.25rem);
+        color: var(--info-toast-color, black);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -31,7 +31,7 @@ class InfoToast extends LitElement {
         left: 50%;
         width: 80%;
         max-width: 24rem;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.2);
         transition:
           transform 180ms ease,
           opacity 180ms ease;
@@ -50,11 +50,12 @@ class InfoToast extends LitElement {
         font-size: 1.5rem;
         line-height: 1.5rem;
         background: transparent;
-        color: black;
+        color: currentColor;
         cursor: pointer;
       }
       button:focus-visible {
-        outline: 0.125rem solid rgb(255, 230, 156);
+        outline: 0.125rem solid var(--info-toast-highlight-color, grey);
+        outline-offset: 0.125rem;
       }
       :host([open]) div {
         transform: translateX(-50%) translateY(50%);
