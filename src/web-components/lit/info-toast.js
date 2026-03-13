@@ -20,7 +20,7 @@ class InfoToast extends LitElement {
       div {
         background-color: rgb(255, 243, 205);
         border-bottom: 0.25rem solid rgb(255, 230, 156);
-        border-radius: 0.5rem;
+        border-radius: 0.25rem;
         color: black;
         display: flex;
         justify-content: space-between;
@@ -87,7 +87,7 @@ class InfoToast extends LitElement {
 
   render() {
     return html`
-      <div role="status" aria-atomic="true">
+      <div role="status" aria-atomic="true" ?hidden=${!this.open}>
         <p>${this.message}</p>
         <button @click=${() => this.hide()} aria-label="Close notification">🅇</button>
       </div>
