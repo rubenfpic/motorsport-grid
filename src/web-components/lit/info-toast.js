@@ -66,13 +66,6 @@ class InfoToast extends LitElement {
     `
   }
 
-  clearTimer() {
-    if (this.timer) {
-      clearTimeout(this.timer)
-      this.timer = null
-    }
-  }
-
   show(message) {
     this.clearTimer()
     this.message = message
@@ -88,6 +81,17 @@ class InfoToast extends LitElement {
     this.clearTimer()
   }
 
+  clearTimer() {
+    if (this.timer) {
+      clearTimeout(this.timer)
+      this.timer = null
+    }
+  }
+
+  handleCloseClick() {
+    this.hide()
+  }
+
   disconnectedCallback() {
     this.clearTimer()
     super.disconnectedCallback()
@@ -97,7 +101,7 @@ class InfoToast extends LitElement {
     return html`
       <div role="status" aria-atomic="true" ?hidden=${!this.open}>
         <p>${this.message}</p>
-        <button @click=${() => this.hide()} aria-label="Close notification">🅇</button>
+        <button @click=${this.handleCloseClick} aria-label="Close notification">🅇</button>
       </div>
     `
   }
