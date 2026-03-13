@@ -48,6 +48,9 @@ class InfoToast extends LitElement {
         color: black;
         cursor: pointer;
       }
+      button:focus-visible {
+        outline: 0.125rem solid rgb(255, 230, 156);
+      }
       :host([open]) div {
         transform: translateX(-50%) translateY(50%);
         opacity: 1;
@@ -71,7 +74,7 @@ class InfoToast extends LitElement {
     this.open = true
     this.timer = setTimeout(() => {
       this.hide()
-    }, 3000)
+    }, 10000)
   }
 
   hide() {
