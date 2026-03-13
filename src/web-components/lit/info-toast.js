@@ -6,12 +6,14 @@ class InfoToast extends LitElement {
     this.open = false
     this.message = ''
     this.timer = null
+    this.delay = 3000
   }
 
   static get properties() {
     return {
       open: { type: Boolean, reflect: true },
       message: { type: String },
+      delay: { type: Number },
     }
   }
 
@@ -73,7 +75,7 @@ class InfoToast extends LitElement {
     this.open = true
     this.timer = setTimeout(() => {
       this.hide()
-    }, 5000)
+    }, this.delay)
   }
 
   hide() {
