@@ -37,6 +37,11 @@ class InfoToast extends LitElement {
           opacity 180ms ease;
         opacity: 0;
       }
+      @media (prefers-reduced-motion: reduce) {
+        div {
+          transition: none;
+        }
+      }
       button {
         border: none;
         padding: 0;
