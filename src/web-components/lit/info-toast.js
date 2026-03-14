@@ -8,6 +8,7 @@ class InfoToast extends LitElement {
     this.timer = null
     this.delay = 3000
     this.variant = ''
+    this.handleDocumentKeydown = this.handleDocumentKeydown.bind(this)
   }
 
   static get properties() {
@@ -114,12 +115,15 @@ class InfoToast extends LitElement {
     this.timer = setTimeout(() => {
       this.hide()
     }, this.delay)
+    document.addEventListener('keydown', this.handleDocumentKeydown)
   }
 
   hide() {
     this.open = false
     this.message = ''
     this.clearTimer()
+    this.dispatchEvent(new CustomEvent('toast-close'))
+    document.removeEventListener('keydown', this.handleDocumentKeydown)
   }
 
   clearTimer() {
@@ -129,12 +133,20 @@ class InfoToast extends LitElement {
     }
   }
 
+  handleDocumentKeydown(event) {
+    if (event.key === 'Escape' && this.open) {
+      event.preventDefault()
+      this.hide()
+    }
+  }
+
   handleCloseClick() {
     this.hide()
   }
 
   disconnectedCallback() {
     this.clearTimer()
+    document.removeEventListener('keydown', this.handleDocumentKeydown)
     super.disconnectedCallback()
   }
 
