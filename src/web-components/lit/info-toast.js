@@ -4,6 +4,7 @@ class InfoToast extends LitElement {
   constructor() {
     super()
     this.open = false
+    this.persistent = false
     this.message = ''
     this.timer = null
     this.delay = 3000
@@ -14,6 +15,7 @@ class InfoToast extends LitElement {
   static get properties() {
     return {
       open: { type: Boolean, reflect: true },
+      persistent: { type: Boolean, reflect: true },
       message: { type: String },
       delay: { type: Number },
       variant: { type: String, reflect: true },
@@ -112,9 +114,11 @@ class InfoToast extends LitElement {
     this.clearTimer()
     this.message = message
     this.open = true
-    this.timer = setTimeout(() => {
-      this.hide()
-    }, this.delay)
+    if (!this.persistent) {
+      this.timer = setTimeout(() => {
+        this.hide()
+      }, this.delay)
+    }
     document.addEventListener('keydown', this.handleDocumentKeydown)
   }
 
