@@ -19,7 +19,7 @@ export default tseslint.config(
         parser: tseslint.parser,
       },
     },
-    rules: {},
+    rules: { 'vue/no-deprecated-slot-attribute': ['error', { ignoreParents: ['/.+-.+/'] }] },
   },
   eslintConfigPrettier,
 )
