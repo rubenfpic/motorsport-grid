@@ -3,17 +3,14 @@ import { LitElement, html, css } from 'lit'
 export class ContentTabs extends LitElement {
   constructor() {
     super()
-    this.activeTab = 'overview'
-    this.tabList = [
-      { id: 'overview', label: 'Details' },
-      { id: 'members', label: 'Drivers' },
-    ]
-    this.activeIndex = 0
+    this.tabList = []
+    this.activeTab = ''
   }
 
   static get properties() {
     return {
       activeTab: { type: String },
+      tabList: { type: Array },
     }
   }
 
@@ -53,11 +50,21 @@ export class ContentTabs extends LitElement {
 
     event.preventDefault()
 
-    this.activeIndex = targetIndex
     this.activeTab = this.tabList[targetIndex].id
 
     const nextTab = this.renderRoot.getElementById(`${this.activeTab}Tab`)
     nextTab?.focus()
+  }
+
+  willUpdate(changedProperties) {
+    if (!changedProperties.has('tabList')) return
+    if (this.tabList.length === 0) {
+      this.activeTab = ''
+      return
+    }
+    if (!this.activeTab || !this.tabList.some((tab) => tab.id === this.activeTab)) {
+      this.activeTab = this.tabList[0].id
+    }
   }
 
   render() {
