@@ -17,31 +17,14 @@ export class ContentTabs extends LitElement {
   static styles = [
     css`
       :host {
-        position: relative;
-        display: block;
-
         nav {
-          z-index: 10;
           position: relative;
           display: flex;
           gap: 0;
           border-bottom: 0.0625rem solid var(--ct-primary, grey);
           margin: 1rem 0;
 
-          &::before {
-            z-index: 15;
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: calc(var(--ct-tab-width) * var(--ct-tab-count));
-            height: 100%;
-            background: var(--ct-tab-background, grey);
-          }
-
           &::after {
-            z-index: 20;
             content: '';
             display: block;
             position: absolute;
@@ -56,7 +39,6 @@ export class ContentTabs extends LitElement {
         }
 
         button {
-          z-index: 40;
           position: relative;
           display: block;
           padding: 0.75rem 1.25rem;
@@ -88,6 +70,12 @@ export class ContentTabs extends LitElement {
           button[role='tab']:focus-visible {
             outline: 0.125rem solid CanvasText;
             box-shadow: none;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          nav::after {
+            transition: none;
           }
         }
 
@@ -151,6 +139,7 @@ export class ContentTabs extends LitElement {
       <nav
         style=${`--ct-tab-count:${this.tabList.length}; --ct-active-index:${safeIndex};`}
         role="tablist"
+        aria-orientation="horizontal"
         aria-label="Content sections"
       >
         ${this.tabList.map((item) => {
