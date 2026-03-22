@@ -17,7 +17,83 @@ export class ContentTabs extends LitElement {
   static styles = [
     css`
       :host {
+        position: relative;
         display: block;
+
+        nav {
+          z-index: 10;
+          position: relative;
+          display: flex;
+          gap: 0;
+          border-bottom: 0.0625rem solid var(--ct-primary, grey);
+          margin: 1rem 0;
+
+          &::before {
+            z-index: 15;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(var(--ct-tab-width) * var(--ct-tab-count));
+            height: 100%;
+            background: var(--ct-tab-background, grey);
+          }
+
+          &::after {
+            z-index: 20;
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: var(--ct-tab-width);
+            height: 0.25rem;
+            transform: translateX(calc(var(--ct-active-index) * 100%));
+            transition: transform 500ms ease;
+            background: var(--ct-primary, white);
+          }
+        }
+
+        button {
+          z-index: 40;
+          position: relative;
+          display: block;
+          padding: 0.75rem 1.25rem;
+          font-family: var(--ct-tab-font-family, 'Arial');
+          font-size: 1.125rem;
+          width: var(--ct-tab-width);
+          height: 100%;
+          margin: 0;
+          border: none;
+          cursor: pointer;
+          background: var(--ct-tab-color);
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+
+          &[role='tab'][aria-selected='true'] {
+          }
+
+          &[role='tab'][aria-selected='false'] {
+          }
+
+          &[role='tab']:focus-visible {
+            outline: none;
+            box-shadow: inset 0 0.125rem 0 var(--pico-primary);
+          }
+        }
+
+        @media (forced-colors: active) {
+          button[role='tab']:focus-visible {
+            outline: 0.125rem solid CanvasText;
+            box-shadow: none;
+          }
+        }
+
+        section {
+          font-family: var(--ct-content-font-family, 'Arial');
+        }
       }
     `,
   ]
@@ -68,8 +144,15 @@ export class ContentTabs extends LitElement {
   }
 
   render() {
+    const activeIndex = this.tabList.findIndex((t) => t.id === this.activeTab)
+    const safeIndex = activeIndex >= 0 ? activeIndex : 0
+
     return html`
-      <nav role="tablist" aria-label="Content sections">
+      <nav
+        style=${`--ct-tab-count:${this.tabList.length}; --ct-active-index:${safeIndex};`}
+        role="tablist"
+        aria-label="Content sections"
+      >
         ${this.tabList.map((item) => {
           return html`
             <button
@@ -77,6 +160,7 @@ export class ContentTabs extends LitElement {
               id=${item.id + 'Tab'}
               role="tab"
               data-tab=${item.id}
+              data-label=${item.label}
               aria-selected=${this.activeTab === item.id}
               aria-controls=${item.id + 'Panel'}
               tabindex=${this.activeTab === item.id ? '0' : '-1'}

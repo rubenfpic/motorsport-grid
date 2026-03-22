@@ -1,3 +1,11 @@
+content-tabs {
+  --ct-primary: var(--pico-primary);
+  --ct-tab-font-family: var(--app-font-family-display);
+  --ct-tab-width: 10rem;
+  --ct-tab-background: var(--pico-background-color);
+  --ct-tab-color: var(--pico-color);
+  /* --ct-content-font-family: var(--app-font-family-display); */
+}
 article {
   font-size: 0.875rem;
 }
