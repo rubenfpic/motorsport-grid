@@ -24,9 +24,9 @@ const onFavoriteToggle = (teamId: number) => {
   }
 }
 const tabs = [
-  { id: 'overview', label: 'Details' },
-  { id: 'description', label: 'Description' },
-  { id: 'members', label: 'Drivers' },
+  { id: 'teamOverview', label: 'Overview' },
+  { id: 'teamDescription', label: 'Description' },
+  { id: 'teamDrivers', label: 'Drivers' },
 ]
 </script>
 
@@ -43,22 +43,20 @@ const tabs = [
   </h2>
 
   <content-tabs .tabList="tabs">
-    <div slot="overview">
-      <h3>Team details</h3>
+    <div slot="teamOverview">
+      <h3 hidden aria-hidden="false">Team overview</h3>
       <p v-if="isTeamLoading" aria-busy="true">Loading team...</p>
       <p v-else-if="teamError">{{ teamError }}</p>
       <TeamOverview v-else-if="team" :team="team" />
       <p v-else>No data available.</p>
     </div>
-    <div slot="description">
-      <h3>Team description</h3>
+    <div slot="teamDescription">
       <p v-if="isTeamLoading" aria-busy="true">Loading description...</p>
       <p v-else-if="teamError">{{ teamError }}</p>
       <TeamDescription v-else-if="team?.description" :team="team" />
       <p v-else>No description available.</p>
     </div>
-    <div slot="members">
-      <h3>Team drivers</h3>
+    <div slot="teamDrivers">
       <p v-if="isDriversLoading" aria-busy="true">Loading drivers...</p>
       <p v-else-if="driversError">{{ driversError }}</p>
       <TeamDrivers v-else-if="drivers.length > 0" :drivers="drivers" />

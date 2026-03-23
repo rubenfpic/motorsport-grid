@@ -7,6 +7,7 @@ defineProps<{
 </script>
 
 <template>
+  <h3>Current drivers</h3>
   <ul>
     <li v-for="driver in drivers" :key="driver.id">
       <RouterLink :to="{ name: 'DriverDetails', params: { driverId: driver.id } }">

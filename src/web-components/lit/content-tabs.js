@@ -22,7 +22,7 @@ export class ContentTabs extends LitElement {
           display: flex;
           gap: 0;
           border-bottom: 0.0625rem solid var(--ct-primary, grey);
-          margin: 1rem 0;
+          margin: 1rem 0 0;
 
           &::after {
             content: '';
@@ -31,7 +31,7 @@ export class ContentTabs extends LitElement {
             bottom: 0;
             left: 0;
             width: var(--ct-tab-width);
-            height: 0.25rem;
+            height: 0.2225rem;
             transform: translateX(calc(var(--ct-active-index) * 100%));
             transition: transform 500ms ease;
             background: var(--ct-primary, white);
@@ -62,7 +62,7 @@ export class ContentTabs extends LitElement {
 
           &[role='tab']:focus-visible {
             outline: none;
-            box-shadow: inset 0 0.125rem 0 var(--pico-primary);
+            box-shadow: inset 0 0.125rem 0 var(--ct-primary);
           }
         }
 
@@ -81,6 +81,10 @@ export class ContentTabs extends LitElement {
 
         section {
           font-family: var(--ct-content-font-family, 'Arial');
+
+          ::slotted(*) {
+            padding-top: 2rem;
+          }
         }
       }
     `,
