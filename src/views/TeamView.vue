@@ -7,20 +7,24 @@ import { useFavoriteStore } from '@/stores/useFavoriteStore'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
+type InfoToastElement = HTMLElement & {
+  show: (message: string) => void
+}
+
 const route = useRoute()
 const { team, teamError, isLoading: isTeamLoading } = useTeamDetails(Number(route.params.teamId))
 const { drivers, driversError, isDriversLoading } = useTeamDrivers(Number(route.params.teamId))
 const favorite = useFavoriteStore()
-const toastRef = ref()
+const toastRef = ref<InfoToastElement | null>(null)
 const onFavoriteToggle = (teamId: number) => {
   const isFavorite = favorite.isFavoriteTeam(teamId)
 
   if (isFavorite) {
     favorite.clearFavoriteTeam()
-    toastRef.value.show('Team removed from favorites')
+    toastRef.value?.show('Team removed from favorites')
   } else {
     favorite.setFavoriteTeam(teamId)
-    toastRef.value.show('Team added to favorites')
+    toastRef.value?.show('Team added to favorites')
   }
 }
 const tabs = [
