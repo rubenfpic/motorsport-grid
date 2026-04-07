@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SeasonDetails from '@/components/SeasonDetails.vue'
+import SeasonDetails from '@/components/seasons/SeasonDetails.vue'
 import { useSeasonEvents } from '@/composables'
 import { AVAILABLE_SEASONS } from '@/constants/api'
 import { computed } from 'vue'

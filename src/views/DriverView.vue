@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DriverDetails from '@/components/DriverDetails.vue'
+import DriverDetails from '@/components/drivers/DriverDetails.vue'
 import { useDriverDetails } from '@/composables'
 import { useRoute } from 'vue-router'
 

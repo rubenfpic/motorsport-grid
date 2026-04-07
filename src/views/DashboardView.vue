@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import CurrentStandingsCard from '@/components/CurrentStandingsCard.vue'
-import FavoritesCard from '@/components/FavoritesCard.vue'
-import NextEventCard from '@/components/NextEventCard.vue'
-import PastEventCard from '@/components/PastEventCard.vue'
-import SeasonLinksCard from '@/components/SeasonLinksCard.vue'
+import CurrentStandingsCard from '@/components/dashboard/CurrentStandingsCard.vue'
+import FavoritesCard from '@/components/dashboard/FavoritesCard.vue'
+import NextEventCard from '@/components/dashboard/NextEventCard.vue'
+import PastEventCard from '@/components/dashboard/PastEventCard.vue'
+import SeasonLinksCard from '@/components/dashboard/SeasonLinksCard.vue'
 import { useDashboard, useFavoriteTeam } from '@/composables'
 
 const { favoriteTeam, error, isLoading, isEmpty } = useFavoriteTeam()
