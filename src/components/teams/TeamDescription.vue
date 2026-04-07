@@ -7,6 +7,5 @@ defineProps<{
 </script>
 
 <template>
-  <h3>Team description</h3>
   <p>{{ team.description }}</p>
 </template>

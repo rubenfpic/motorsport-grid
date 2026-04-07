@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import TeamDescription from '@/components/TeamDescription.vue'
-import TeamDrivers from '@/components/TeamDrivers.vue'
-import TeamOverview from '@/components/TeamOverview.vue'
+import TeamDescription from '@/components/teams/TeamDescription.vue'
+import TeamDrivers from '@/components/teams/TeamDrivers.vue'
+import TeamOverview from '@/components/teams/TeamOverview.vue'
 import { useTeamDetails, useTeamDrivers } from '@/composables'
 import { useFavoriteStore } from '@/stores/useFavoriteStore'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 type InfoToastElement = HTMLElement & {
@@ -16,6 +16,8 @@ const { team, teamError, isLoading: isTeamLoading } = useTeamDetails(Number(rout
 const { drivers, driversError, isDriversLoading } = useTeamDrivers(Number(route.params.teamId))
 const favorite = useFavoriteStore()
 const toastRef = ref<InfoToastElement | null>(null)
+const hasDescription = computed(() => Boolean(team.value?.description))
+const hasDrivers = computed(() => drivers.value.length > 0)
 const onFavoriteToggle = (teamId: number) => {
   const isFavorite = favorite.isFavoriteTeam(teamId)
 
@@ -27,11 +29,11 @@ const onFavoriteToggle = (teamId: number) => {
     toastRef.value?.show('Team added to favorites')
   }
 }
-const tabs = [
+const tabs = computed(() => [
   { id: 'teamOverview', label: 'Overview' },
-  { id: 'teamDescription', label: 'Description' },
-  { id: 'teamDrivers', label: 'Drivers' },
-]
+  ...(hasDescription.value ? [{ id: 'teamDescription', label: 'Description' }] : []),
+  ...(hasDrivers.value ? [{ id: 'teamDrivers', label: 'Drivers' }] : []),
+])
 </script>
 
 <template>
@@ -55,15 +57,17 @@ const tabs = [
       <p v-else>No data available.</p>
     </div>
     <div slot="teamDescription">
+      <h3 hidden aria-hidden="false">Team description</h3>
       <p v-if="isTeamLoading" aria-busy="true">Loading description...</p>
       <p v-else-if="teamError">{{ teamError }}</p>
-      <TeamDescription v-else-if="team?.description" :team="team" />
+      <TeamDescription v-else-if="team && hasDescription" :team="team" />
       <p v-else>No description available.</p>
     </div>
     <div slot="teamDrivers">
+      <h3 hidden aria-hidden="false">Team drivers</h3>
       <p v-if="isDriversLoading" aria-busy="true">Loading drivers...</p>
       <p v-else-if="driversError">{{ driversError }}</p>
-      <TeamDrivers v-else-if="drivers.length > 0" :drivers="drivers" />
+      <TeamDrivers v-else-if="hasDrivers" :drivers="drivers" />
       <p v-else>No drivers available.</p>
     </div>
   </content-tabs>
