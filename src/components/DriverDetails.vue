@@ -8,10 +8,10 @@ defineProps<{
 
 <template>
   <ul>
-    <li><strong>ID:</strong> <status-badge :label="driverDetails.id" /></li>
     <li><strong>Name:</strong> {{ driverDetails.name }}</li>
     <li><strong>Team:</strong> {{ driverDetails.team }}</li>
     <li><strong>Nationality:</strong> {{ driverDetails.nationality }}</li>
+    <li><status-badge :label="`id: ${driverDetails.id}`" /></li>
   </ul>
   <div class="grid">
     <p>{{ driverDetails.description }}</p>
