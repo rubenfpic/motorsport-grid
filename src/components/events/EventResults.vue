@@ -7,16 +7,6 @@ defineProps<{
 </script>
 
 <template>
-  <h2>{{ eventDetails.name }}</h2>
-
-  <ul>
-    <li><strong>Event ID:</strong> {{ eventDetails.id }}</li>
-    <li><strong>Season:</strong> {{ eventDetails.season }}</li>
-    <li><strong>Venue:</strong> {{ eventDetails.venue }}</li>
-    <li><strong>City:</strong> {{ eventDetails.city }}</li>
-    <li><strong>Country:</strong> {{ eventDetails.country }}</li>
-    <li v-if="eventDetails.date"><strong>Date:</strong> {{ eventDetails.date }}</li>
-  </ul>
   <table v-if="eventDetails.result.length">
     <thead>
       <tr>
@@ -35,9 +25,4 @@ defineProps<{
       </tr>
     </tbody>
   </table>
-  <img
-    v-if="eventDetails.poster"
-    :src="eventDetails.poster"
-    :alt="`Official poster for ${eventDetails.name}`"
-  />
 </template>

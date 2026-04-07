@@ -5,12 +5,12 @@ import { onMounted, ref, watch, type ComputedRef } from 'vue'
 export function useEventDetails(eventId: ComputedRef<string>) {
   const eventDetails = ref<EventDetails | null>(null)
   const eventDetailsError = ref<string | null>(null)
-  const isLoading = ref(true)
+  const isEventDetailsLoading = ref(true)
   const eventService = new EventService()
 
   const loadEventDetails = async () => {
     eventDetailsError.value = null
-    isLoading.value = true
+    isEventDetailsLoading.value = true
 
     try {
       eventDetails.value = await eventService.getEventById(eventId.value)
@@ -18,7 +18,7 @@ export function useEventDetails(eventId: ComputedRef<string>) {
       console.error('Error al cargar los detalles del evento:', error)
       eventDetailsError.value = 'No se pudieron cargar los detalles del evento.'
     } finally {
-      isLoading.value = false
+      isEventDetailsLoading.value = false
     }
   }
   onMounted(loadEventDetails)
@@ -28,7 +28,7 @@ export function useEventDetails(eventId: ComputedRef<string>) {
   return {
     eventDetails,
     eventDetailsError,
-    isLoading,
+    isEventDetailsLoading,
     loadEventDetails,
   }
 }
