@@ -1,47 +1,14 @@
 import express from 'express'
-import { mkdirSync } from 'node:fs'
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { open } from 'sqlite'
-import sqlite3 from 'sqlite3'
+import { DB_PATH, initCacheDb } from './db/cache-db.js'
+import { createCacheRepository } from './repositories/cache-repository.js'
 
 const app = express()
 const PORT = 3000
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const DATA_DIR = join(__dirname, 'data')
-const DB_PATH = join(DATA_DIR, 'cache.db')
-
-let db
-
-const initCacheDb = async () => {
-  mkdirSync(DATA_DIR, { recursive: true })
-
-  db = await open({
-    filename: DB_PATH,
-    driver: sqlite3.Database,
-  })
-
-  await db.exec(`
-    CREATE TABLE IF NOT EXISTS cache_entries (
-      key TEXT PRIMARY KEY,
-      payload TEXT NOT NULL,
-      updated_at TEXT NOT NULL,
-      source TEXT NOT NULL,
-      status TEXT NOT NULL
-    );
-  `)
-}
-
-const serializeCacheRow = (row) => ({
-  key: row.key,
-  payload: JSON.parse(row.payload),
-  updatedAt: row.updated_at,
-  source: row.source,
-  status: row.status,
-})
+let cacheRepository
 
 app.use(express.json())
 
+// RUTA: Este endpoint sirve para comprobar rápidamente que el backend está vivo y conectado a su configuración básica.
 app.get('/api/health', (_request, response) => {
   response.json({
     status: 'ok',
@@ -51,6 +18,7 @@ app.get('/api/health', (_request, response) => {
   })
 })
 
+// RUTA: Esta ruta guarda o actualiza en SQLite el JSON asociado a una clave de cache concreta.
 app.put('/api/cache/:key', async (request, response) => {
   const cacheKey = request.params.key
   const { payload, source = 'manual', status = 'ok' } = request.body ?? {}
@@ -65,45 +33,32 @@ app.put('/api/cache/:key', async (request, response) => {
     return
   }
 
-  const updatedAt = new Date().toISOString()
-  const payloadJson = JSON.stringify(payload)
+  // ACCESO A DATOS: La escritura se delega al repositorio para no mezclar SQL con la capa HTTP.
+  const row = await cacheRepository.setCache(cacheKey, payload, {
+    source,
+    status,
+  })
 
-  await db.run(
-    `
-      INSERT INTO cache_entries (key, payload, updated_at, source, status)
-      VALUES (?, ?, ?, ?, ?)
-      ON CONFLICT(key) DO UPDATE SET
-        payload = excluded.payload,
-        updated_at = excluded.updated_at,
-        source = excluded.source,
-        status = excluded.status
-    `,
-    [cacheKey, payloadJson, updatedAt, String(source), String(status)],
-  )
-
-  const row = await db.get('SELECT key, payload, updated_at, source, status FROM cache_entries WHERE key = ?', [
-    cacheKey,
-  ])
-
-  response.json(serializeCacheRow(row))
+  response.json(row)
 })
 
+// RUTA: Esta ruta devuelve la entrada de cache de una clave concreta si existe en la base de datos.
 app.get('/api/cache/:key', async (request, response) => {
   const cacheKey = request.params.key
-  const row = await db.get('SELECT key, payload, updated_at, source, status FROM cache_entries WHERE key = ?', [
-    cacheKey,
-  ])
+  const row = await cacheRepository.getCache(cacheKey)
 
   if (!row) {
     response.status(404).json({ error: 'cache entry not found' })
     return
   }
 
-  response.json(serializeCacheRow(row))
+  response.json(row)
 })
 
+// ARRANQUE: Primero inicializa la BD y el repositorio, y solo después expone el servidor HTTP.
 const startServer = async () => {
-  await initCacheDb()
+  const db = await initCacheDb()
+  cacheRepository = createCacheRepository(db)
   app.listen(PORT, () => {
     console.log(`[server] listening on http://localhost:${PORT}`)
   })
