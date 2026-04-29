@@ -82,4 +82,14 @@ export class TheSportsDbClient {
   async getCompetitionById(competitionId) {
     return this.request('lookupleague.php', { id: competitionId })
   }
+
+  // Consulta los próximos eventos de una competición.
+  async getNextEventsByLeague(competitionId) {
+    return this.request('eventsnextleague.php', { id: competitionId })
+  }
+
+  // Consulta los eventos pasados de una competición.
+  async getPastEventsByLeague(competitionId) {
+    return this.request('eventspastleague.php', { id: competitionId })
+  }
 }
