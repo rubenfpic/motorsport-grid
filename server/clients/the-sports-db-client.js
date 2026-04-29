@@ -92,4 +92,29 @@ export class TheSportsDbClient {
   async getPastEventsByLeague(competitionId) {
     return this.request('eventspastleague.php', { id: competitionId })
   }
+
+  // Consulta los eventos de una competición para una temporada concreta.
+  async getSeasonEventsByLeague(competitionId, seasonYear) {
+    return this.request('eventsseason.php', { id: competitionId, s: seasonYear })
+  }
+
+  // Consulta el detalle de un evento por su ID.
+  async getEventById(eventId) {
+    return this.request('lookupevent.php', { id: eventId })
+  }
+
+  // Consulta todos los equipos de una competición.
+  async getTeamsByLeague(competitionId) {
+    return this.request('search_all_teams.php', { id: competitionId })
+  }
+
+  // Consulta todos los pilotos de un equipo.
+  async getDriversByTeamId(teamId) {
+    return this.request('lookup_all_players.php', { id: teamId })
+  }
+
+  // Consulta el detalle de un piloto por su ID.
+  async getDriverById(driverId) {
+    return this.request('lookupplayer.php', { id: driverId })
+  }
 }
