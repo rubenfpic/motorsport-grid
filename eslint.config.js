@@ -21,5 +21,11 @@ export default tseslint.config(
     },
     rules: { 'vue/no-deprecated-slot-attribute': ['error', { ignoreParents: ['/.+-.+/'] }] },
   },
+  {
+    files: ['server/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
   eslintConfigPrettier,
 )
