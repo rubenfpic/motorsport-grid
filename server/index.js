@@ -146,6 +146,7 @@ app.post('/api/admin/refresh/dashboard/:competitionId', async (request, response
 
     response.json({
       refreshed: true,
+      stale: false,
       cache: {
         key: cached.key,
         updatedAt: cached.updatedAt,
@@ -153,6 +154,24 @@ app.post('/api/admin/refresh/dashboard/:competitionId', async (request, response
       payload,
     })
   } catch (error) {
+    const cacheKey = getDashboardCacheKey(competitionId)
+    const staleCache = await cacheRepository.getCache(cacheKey)
+
+    if (staleCache) {
+      response.json({
+        refreshed: false,
+        stale: true,
+        cache: {
+          key: staleCache.key,
+          updatedAt: staleCache.updatedAt,
+        },
+        payload: staleCache.payload,
+        warning:
+          'No se pudo refrescar desde TheSportsDB. Se devuelve el último dato cacheado disponible.',
+      })
+      return
+    }
+
     if (error instanceof TheSportsDbClientError) {
       if (error.code === 'UPSTREAM_TIMEOUT') {
         response.status(504).json({ error: error.message, code: error.code })
