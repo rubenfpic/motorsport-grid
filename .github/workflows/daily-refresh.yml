@@ -1,0 +1,38 @@
+name: Daily Cache Refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 3 * * *'
+
+jobs:
+  refresh-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run daily refresh
+        env:
+          REFRESH_COMPETITIONS: ${{ vars.REFRESH_COMPETITIONS }}
+          REFRESH_SEASONS: ${{ vars.REFRESH_SEASONS }}
+          REFRESH_PAUSE_MS: ${{ vars.REFRESH_PAUSE_MS }}
+        run: npm run refresh:daily
+
+      - name: Upload cache database artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cache-db
+          path: server/data/cache.db
+          if-no-files-found: ignore
