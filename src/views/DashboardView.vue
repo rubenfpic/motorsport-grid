@@ -5,6 +5,7 @@ import NextEventCard from '@/components/dashboard/NextEventCard.vue'
 import PastEventCard from '@/components/dashboard/PastEventCard.vue'
 import SeasonLinksCard from '@/components/dashboard/SeasonLinksCard.vue'
 import { useDashboard, useFavoriteTeam } from '@/composables'
+import { computed } from 'vue'
 
 const { favoriteTeam, error, isLoading, isEmpty } = useFavoriteTeam()
 const {
@@ -18,6 +19,10 @@ const {
   isPastEventLoading,
   isCurrentStandingsLoading,
 } = useDashboard()
+
+const showCurrentStandings = computed(
+  () => isCurrentStandingsLoading.value || Boolean(currentStandings.value),
+)
 </script>
 
 <template>
@@ -37,7 +42,7 @@ const {
         :isNextEventLoading="isNextEventLoading"
       />
     </div>
-    <div class="dashboard__standings">
+    <div v-if="showCurrentStandings" class="dashboard__standings">
       <CurrentStandingsCard
         :currentStandings="currentStandings"
         :currentStandingsError="currentStandingsError"
